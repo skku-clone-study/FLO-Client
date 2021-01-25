@@ -12,15 +12,7 @@
         android:paddingBottom="5sp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_baseline_chevron_left_24"
-            android:tint="@color/gray_600"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <include layout="@layout/image_btn_back"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -203,6 +195,7 @@
         android:layout_height="wrap_content"
         android:background="@color/flo_blue"
         android:clickable="false"
+        android:textSize="20sp"
         android:text="다음"
         android:textColor="@color/gray_400"
         app:layout_constraintBottom_toBottomOf="parent" />

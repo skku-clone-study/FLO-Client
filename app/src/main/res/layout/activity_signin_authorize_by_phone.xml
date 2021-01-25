@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signin_auth_by_phone_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/image_btn_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="본인인증"
+            android:textColor="@color/gray_900"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/signin_auth_by_phone_header"
+        android:padding="10sp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/signin_abp_name"
+            android:hint="이름" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="휴대폰 번호 (-제외)"
+            android:id="@+id/signin_abp_phonenumber"
+            app:layout_constraintTop_toBottomOf="@id/signin_abp_name"
+            android:inputType="number"/>
+        <android.widget.Button
+            android:layout_width="wrap_content"
+            android:paddingStart="15sp"
+            android:paddingEnd="15sp"
+            android:layout_height="30sp"
+            app:layout_constraintEnd_toEndOf="@id/signin_abp_phonenumber"
+            app:layout_constraintTop_toTopOf="@id/signin_abp_phonenumber"
+            app:layout_constraintBottom_toBottomOf="@id/signin_abp_phonenumber"
+            android:text="인증번호 전송"
+            android:textColor="@color/white"
+            android:background="@drawable/corner_rounded_grayy_400_btn" />
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="인증번호 (6자리)"
+            android:id="@+id/signin_abp_auth_number"
+            app:layout_constraintTop_toBottomOf="@id/signin_abp_phonenumber"
+            android:inputType="number"
+            android:visibility="invisible"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <android.widget.Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_400"
+        android:clickable="false"
+        android:text="본인인증 완료"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

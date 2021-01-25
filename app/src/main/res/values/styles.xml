@@ -3,6 +3,7 @@
     <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
         <item name="colorControlNormal">@color/gray_100</item>
         <item name="colorControlActivated">@color/gray_800</item>
+        <item name="backgroundTint">@color/gray_800</item>
         <item name="android:paddingBottom">20sp</item>
         <item name="android:paddingTop">20sp</item>
     </style>

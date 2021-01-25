@@ -11,9 +11,10 @@ import android.widget.RadioButton
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signin_clause)
+        setContentView(R.layout.activity_signin_signin)
     }
 
+    /* onRadioButtonClicked, isAllRequiredRadioButtonClicked 함수는 나중에 권한 페이지가 있는 액티비티로 옮기기!! */
     fun onRadioButtonClicked(view: View) {
         if (view is CheckBox) {
             val checked = view.isChecked
