@@ -6,5 +6,16 @@
         <item name="android:paddingBottom">20sp</item>
         <item name="android:paddingTop">20sp</item>
     </style>
+    <style name="RoundCheckBoxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4sp</item>
+        <item name="android:layout_marginTop">4sp</item>
+        <item name="android:onClick">onRadioButtonClicked</item>
+        <item name="android:paddingStart">15sp</item>
+        <item name="android:paddingBottom">10sp</item>
+        <item name="android:paddingTop">10sp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 
 </resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="40dp"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="로그인"
+        android:textSize="25sp"
+        android:layout_marginBottom="20sp"/>
+    <android.widget.Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카카오톡으로 간편로그인"
+        android:background="#FFE600"
+        android:layout_marginBottom="10sp"
+        android:drawableStart="@drawable/ic_kakao_logo"
+        />
+    <android.widget.Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="다른 카카오계정으로 로그인"
+        android:layout_marginBottom="20sp"
+        android:background="#FFE600"
+        android:drawableStart="@drawable/ic_kakao_logo"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close"
+        android:tint="@color/white"
+        android:background="@drawable/kakao_stroke_oval"
+        android:padding="10dp"
+        />
+
+</LinearLayout>
