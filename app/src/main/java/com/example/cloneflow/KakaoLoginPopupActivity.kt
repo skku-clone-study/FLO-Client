@@ -14,7 +14,6 @@ class KakaoLoginPopupActivity : Activity() {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login_kakao_popup)
-        val window = window
         window.setWindowAnimations(R.style.CustomDialogAnimation) // not working
     }
 
