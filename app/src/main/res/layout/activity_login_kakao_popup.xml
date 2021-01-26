@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@android:color/transparent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:padding="40dp"
     android:gravity="center"
+    android:background="#E6000000"
     >
 
     <TextView
@@ -13,7 +13,11 @@
         android:layout_height="wrap_content"
         android:text="로그인"
         android:textSize="25sp"
-        android:layout_marginBottom="20sp"/>
+        android:textColor="@color/gray_400"
+        android:layout_marginBottom="40sp"
+        android:id="@+id/lt"
+        android:layout_centerHorizontal="true"
+        />
     <android.widget.Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,6 +25,12 @@
         android:background="#FFE600"
         android:layout_marginBottom="10sp"
         android:drawableStart="@drawable/ic_kakao_logo"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:paddingStart="20sp"
+        android:paddingEnd="20sp"
+        android:layout_below="@+id/lt"
+        android:id="@+id/lb1"
         />
     <android.widget.Button
         android:layout_width="match_parent"
@@ -29,6 +39,12 @@
         android:layout_marginBottom="20sp"
         android:background="#FFE600"
         android:drawableStart="@drawable/ic_kakao_logo"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:paddingStart="20sp"
+        android:paddingEnd="20sp"
+        android:layout_below="@+id/lb1"
+        android:id="@+id/lb2"
         />
 
     <ImageButton
@@ -38,6 +54,10 @@
         android:tint="@color/white"
         android:background="@drawable/kakao_stroke_oval"
         android:padding="10dp"
+        android:onClick="mOnClose"
+        android:layout_below="@id/lb2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30sp"
         />
 
-</LinearLayout>
+</RelativeLayout>

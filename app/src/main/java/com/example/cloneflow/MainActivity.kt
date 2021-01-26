@@ -1,5 +1,6 @@
 package com.example.cloneflow
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,11 +8,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.RadioButton
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signin_signin)
+        setContentView(R.layout.activity_login)
     }
 
     /* onRadioButtonClicked, isAllRequiredRadioButtonClicked 함수는 나중에 권한 페이지가 있는 액티비티로 옮기기!! */
@@ -48,9 +50,9 @@ class MainActivity : AppCompatActivity() {
         val cBox3 = findViewById<CheckBox>(R.id.signin_radio_clause3)
         btnNext.isClickable = cBox1.isChecked && cBox2.isChecked && cBox3.isChecked
         if(cBox1.isChecked && cBox2.isChecked && cBox3.isChecked) {
-            btnNext.setTextColor(resources.getColor(R.color.white))
+            btnNext.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
         } else {
-            btnNext.setTextColor(resources.getColor(R.color.gray_400))
+            btnNext.setTextColor(ContextCompat.getColor(applicationContext, R.color.gray_400))
         }
         val cBox4 = findViewById<CheckBox>(R.id.signin_radio_clause4)
         val cBox5 = findViewById<CheckBox>(R.id.signin_radio_clause5)
@@ -61,4 +63,10 @@ class MainActivity : AppCompatActivity() {
             if(cBoxAll.isChecked){ cBoxAll.isChecked = false}
         }
     }
+
+    public fun mOnKakaoLoginPopupClick(v : View) {
+        val kakaoLoginPopupStartIntent = Intent(this, KakaoLoginPopupActivity::class.java)
+        startActivityForResult(kakaoLoginPopupStartIntent, 1)
+    }
+
 }
