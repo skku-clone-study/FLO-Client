@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_flo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".ClauseSigninActivity"/>
+        <activity android:name=".LocalSigninActivity"/>
+        <activity android:name=".PhoneAuthActivity"/>
         <activity android:name=".KakaoLoginPopupActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -54,7 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginBottom="7dp"
-            android:background="@color/flo_blue" >
+            android:background="@color/flo_blue"
+            android:onClick="mOnEmailSigninClick">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -66,7 +67,8 @@
                 android:minWidth="0dp"
                 android:text=" 이메일 아이디로 가입하기"
                 android:textSize="15sp"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:onClick="mOnEmailSigninClick"/>
         </FrameLayout>
         <FrameLayout
             android:layout_width="match_parent"
@@ -108,7 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginBottom="7dp"
-            android:background="#FFE600" >
+            android:background="#FFE600"
+            android:onClick="mOnKakaoLoginPopupClick">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -120,7 +123,8 @@
                 android:minWidth="0dp"
                 android:text=" 카카오 계정으로 로그인"
                 android:textSize="15sp"
-                android:textColor="@color/gray_900" />
+                android:textColor="@color/gray_900"
+                android:onClick="mOnKakaoLoginPopupClick"/>
         </FrameLayout>
         <FrameLayout
             android:layout_width="match_parent"

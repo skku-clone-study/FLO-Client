@@ -50,6 +50,8 @@
             app:layout_constraintTop_toBottomOf="@id/signin_abp_name"
             android:inputType="number"/>
         <android.widget.Button
+            android:id="@+id/signin_auth_by_phone_send_message"
+            android:onClick="mOnSendMessageClicked"
             android:layout_width="wrap_content"
             android:paddingStart="15sp"
             android:paddingEnd="15sp"
