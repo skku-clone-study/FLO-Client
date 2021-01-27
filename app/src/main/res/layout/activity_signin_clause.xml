@@ -166,7 +166,8 @@
                     android:layout_height="wrap_content"
                     android:text="전체 동의"
                     android:textColor="@color/gray_900"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/b"
