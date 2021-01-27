@@ -42,6 +42,7 @@
             android:layout_marginTop="20sp"
             android:layout_marginBottom="20sp"
             android:textSize="16sp"
+            android:id="@+id/signin_signin_userinfo_text"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,10 +61,12 @@
                 android:text="\u0040"
                 android:textColor="@color/gray_900"/>
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signin_signin_user_email_format"
                 style="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
+                android:onClick="showEmailFormatOptionDialog"
                 android:hint="선택"/>
         </LinearLayout>
         <com.google.android.material.textfield.TextInputEditText

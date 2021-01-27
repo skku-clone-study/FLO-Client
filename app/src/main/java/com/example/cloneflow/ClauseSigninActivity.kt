@@ -2,6 +2,7 @@ package com.example.cloneflow
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -42,12 +43,7 @@ class ClauseSigninActivity : AppCompatActivity() {
                         findViewById<CheckBox>(R.id.signin_radio_clause3).isChecked = true
                         findViewById<CheckBox>(R.id.signin_radio_clause4).isChecked = true
                         findViewById<CheckBox>(R.id.signin_radio_clause5).isChecked = true
-                        val localDate : LocalDate = LocalDate.now()
-                        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-                        builder.setMessage("[FLO] ${localDate.year}년 ${localDate.monthValue}월 ${localDate.dayOfMonth}일\n광고수신동의 처리되었습니다.")
-                            .setPositiveButton("확인"){ _: DialogInterface, _: Int -> }
-                        val alertDialog: AlertDialog = builder.create()
-                        alertDialog.show()
+                        onAdvClauseChecked()
                     } else {
                         Log.d("로그", "MainActivity - all uncheck")
                         findViewById<CheckBox>(R.id.signin_radio_clause1).isChecked = false
@@ -58,12 +54,7 @@ class ClauseSigninActivity : AppCompatActivity() {
                     }
                 R.id.signin_radio_clause5 -> {
                     if(checked) {
-                        val localDate : LocalDate = LocalDate.now()
-                        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-                        builder.setMessage("[FLO] ${localDate.year}년 ${localDate.monthValue}월 ${localDate.dayOfMonth}일\n광고수신동의 처리되었습니다.")
-                        .setPositiveButton("확인"){ _: DialogInterface, _: Int -> }
-                        val alertDialog: AlertDialog = builder.create()
-                        alertDialog.show()
+                        onAdvClauseChecked()
                     }
                 }
             }
@@ -92,6 +83,17 @@ class ClauseSigninActivity : AppCompatActivity() {
         } else {
             if(cBoxAll.isChecked){ cBoxAll.isChecked = false}
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun onAdvClauseChecked(){
+        val localDate : LocalDate = LocalDate.now()
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setMessage("[FLO] ${localDate.year}년 ${localDate.monthValue}월 ${localDate.dayOfMonth}일\n광고수신동의 처리되었습니다.")
+            .setPositiveButton("확인"){ _: DialogInterface, _: Int -> }
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.show()
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#4D2BFF"))
     }
 
 }

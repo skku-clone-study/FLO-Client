@@ -48,7 +48,7 @@
             android:hint="휴대폰 번호 (-제외)"
             android:id="@+id/signin_abp_phonenumber"
             app:layout_constraintTop_toBottomOf="@id/signin_abp_name"
-            android:inputType="number"/>
+            android:inputType="number" />
         <android.widget.Button
             android:id="@+id/signin_auth_by_phone_send_message"
             android:onClick="mOnSendMessageClicked"
@@ -70,10 +70,13 @@
             android:id="@+id/signin_abp_auth_number"
             app:layout_constraintTop_toBottomOf="@id/signin_abp_phonenumber"
             android:inputType="number"
-            android:visibility="invisible"/>
+            android:maxLength="6"
+            android:visibility="invisible"
+            app:errorEnabled="true"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <android.widget.Button
+        android:id="@+id/signin_abp_finished_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/gray_400"
@@ -82,6 +85,7 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="mOnPhoneAuthFinishBtnClicked"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.cloneflow
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -40,15 +41,42 @@ class PhoneAuthActivity : AppCompatActivity() {
 
     public fun mOnSendMessageClicked(v : View) {
         // Do Send Message
+        val phoneNumberInput = findViewById<TextInputEditText>(R.id.signin_abp_phonenumber)
+        val phoneAuthFinBtn = findViewById<Button>(R.id.signin_abp_finished_btn)
         val authInput = findViewById<TextInputEditText>(R.id.signin_abp_auth_number)
         authInput.visibility = View.VISIBLE
         authInput.addTextChangedListener(object :TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                // 맞는지 확인하고 본인인증 완료 누르게 함
+                if(authInput.text.toString().length == 6){
+                    // 요청 전송하고 상태 코드 받아옴
+                    // api/sms-auth/check/ 쿼리는 name tell check
+                    if(authInput.text.toString() == "123456") { // 여기 조건 수정
+                        phoneAuthFinBtn.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.flo_blue))
+                        phoneAuthFinBtn.isClickable = true
+                        authInput.error = null
+                    } else {
+                        phoneAuthFinBtn.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.gray_400))
+                        phoneAuthFinBtn.isClickable = false
+                        authInput.error = "인증번호를 다시 입력해주세요"
+                    }
+                } else {
+                    phoneAuthFinBtn.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.gray_400))
+                    phoneAuthFinBtn.isClickable = false
+                    authInput.error = null
+                }
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+    }
+
+    fun mOnPhoneAuthFinishBtnClicked(v : View) {
+        val phoneNumberInput = findViewById<TextInputEditText>(R.id.signin_abp_phonenumber)
+        val userNameInput = findViewById<TextInputEditText>(R.id.signin_abp_name)
+        val localSigninInfoInputStartIntent = Intent(this, LocalSigninInfoInputActivity::class.java)
+        localSigninInfoInputStartIntent.putExtra("signin_username", userNameInput.text.toString())
+        localSigninInfoInputStartIntent.putExtra("signin_userphonenum", phoneNumberInput.text.toString())
+        startActivity(localSigninInfoInputStartIntent)
     }
 
 }
