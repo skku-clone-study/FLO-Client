@@ -14,18 +14,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.JsonObject
-import com.google.gson.JsonParseException
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
 
 class PhoneAuthActivity : AppCompatActivity() {
 
     companion object {
-        var BaseUrL = "http://sms.heedong.dev/api/"
+        var BaseUrL = "http://sms.heedong.dev/"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,13 +61,12 @@ class PhoneAuthActivity : AppCompatActivity() {
         sendJsonObject.addProperty("name", username)
         sendJsonObject.addProperty("tel", phoneNumber)
         val call = service.postSmsAuth(sendJsonObject)
-        Log.d("로그", "PhoneAuthActivity - call was successful , $sendJsonObject")
         call.enqueue(object: Callback<SMSResponse> {
             override fun onFailure(call: Call<SMSResponse>?, t: Throwable) {
                 Log.d("로그", "PhoneAuthActivity - However, onFailure() called ${t.message}")
             }
             override fun onResponse(call: Call<SMSResponse>?, response: Response<SMSResponse>) {
-                Log.d("로그", "PhoneAuthActivity - onResponse() called")
+                Log.d("로그", "PhoneAuthActivity - Wow! onResponse() called")
                 val smsResponse = response.body()
                 val statusCode = smsResponse!!.code
                 val isSuccess = smsResponse.isSuccess
