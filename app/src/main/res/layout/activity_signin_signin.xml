@@ -54,7 +54,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:hint="아이디(이메일)"/>
+                android:hint="아이디(이메일)"
+                android:inputType="textUri"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,6 +69,7 @@
                 android:layout_weight="5"
                 android:onClick="showEmailFormatOptionDialog"
                 android:hint="선택"/>
+
         </LinearLayout>
         <com.google.android.material.textfield.TextInputEditText
             style="@style/EditTextStyle"

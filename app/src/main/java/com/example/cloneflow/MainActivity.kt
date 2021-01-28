@@ -13,18 +13,12 @@ import androidx.core.content.ContextCompat
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_main)
         Log.d("로그", "MainActivity - onCreate() called")
     }
 
-    public fun mOnKakaoLoginPopupClick(v : View) {
-        val kakaoLoginPopupStartIntent = Intent(this, KakaoLoginPopupActivity::class.java)
-        startActivityForResult(kakaoLoginPopupStartIntent, 1)
+    fun mOnSettingClick(v : View) {
+        val settingsStartIntent = Intent(this, SettingsActivity::class.java)
+        startActivity(settingsStartIntent)
     }
-
-    public fun mOnLocalSigninClick(v : View){
-        val localSigninStartIntent = Intent(this, LocalSigninActivity::class.java)
-        startActivity(localSigninStartIntent)
-    }
-
 }

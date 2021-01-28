@@ -1,16 +1,23 @@
 package com.example.cloneflow
 
+import android.app.ActionBar
+import android.app.Dialog
+import android.app.PendingIntent.getActivity
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
+import android.app.AlertDialog
+import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import java.time.LocalDate
@@ -22,8 +29,20 @@ class ClauseSigninActivity : AppCompatActivity() {
         Log.d("로그", "ClauseSigninActivity - onCreate() called")
     }
 
-    fun mOnClauseNextClick(v : View){
-        if(v.findViewById<Button>(R.id.signin_clause_btn_next).isClickable){
+    fun mOnAgeDialogOpen(v : View) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this@ClauseSigninActivity, R.style.CustomDialog)
+        builder.setMessage("고객님의 연령대를 선택해 주세요.")
+            .setNegativeButton("만 14세 미만"){ _ : DialogInterface, _: Int -> mOnClauseNextClick()}
+            .setPositiveButton("만 14세 이상"){ _: DialogInterface, _: Int -> mOnClauseNextClick()}
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.show()
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#272727"))
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#4D2BFF"))
+        alertDialog.window?.attributes?.windowAnimations = R.style.CustomDialogAnimation
+    }
+
+    private fun mOnClauseNextClick(){
+        if(findViewById<Button>(R.id.signin_clause_btn_next).isClickable){
             val phoneAuthStartIntent = Intent(this, PhoneAuthActivity::class.java)
             startActivity(phoneAuthStartIntent)
         }
@@ -94,6 +113,7 @@ class ClauseSigninActivity : AppCompatActivity() {
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#4D2BFF"))
+        alertDialog.window?.attributes?.windowAnimations = R.style.CustomDialogAnimation
     }
 
 }

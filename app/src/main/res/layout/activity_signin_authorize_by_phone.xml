@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/signin_abp_name"
+            android:privateImeOptions="defaultInputmode=korean"
             android:hint="이름" />
 
         <com.google.android.material.textfield.TextInputEditText
