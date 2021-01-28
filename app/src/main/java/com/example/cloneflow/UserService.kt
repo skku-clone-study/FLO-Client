@@ -13,11 +13,19 @@ class UserService {
         @POST("api/sign-up")
         fun postSignUp(
             @Body params: JsonObject
-        ) : Call<SignUpResponse>
+        ) : Call<UserResponse>
+    }
+
+    interface SignInService {
+        @Headers("accept: application/json", "content-type: application/json")
+        @POST("api/sign-in")
+        fun postSignIn(
+            @Body params: JsonObject
+        ) : Call<UserResponse>
     }
 }
 
-data class SignUpResponse(
+data class UserResponse(
     @SerializedName("isSuccess") var isSuccess : Boolean? = null,
     @SerializedName("code") var code : Int? = null,
     @SerializedName("message") var message : String? = null,

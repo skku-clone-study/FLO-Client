@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getToken(): String? {
-        val prefs = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE)
-        return prefs.getString("jwt", "")
+        val pref = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE)
+        return pref.getString("jwt", "")
     }
 }

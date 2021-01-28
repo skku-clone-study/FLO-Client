@@ -133,11 +133,11 @@ class LocalSigninInfoInputActivity : AppCompatActivity() {
         sendJsonObject.addProperty("gender", gender)
         Log.d("로그", "LocalSigninInfoInputActivity - $sendJsonObject")
         val call = service.postSignUp(sendJsonObject)
-        call.enqueue(object: Callback<SignUpResponse> {
-            override fun onFailure(call: Call<SignUpResponse>?, t: Throwable) {
+        call.enqueue(object: Callback<UserResponse> {
+            override fun onFailure(call: Call<UserResponse>?, t: Throwable) {
                 Log.d("로그", "LocalSigninInfoInputActivity - However, onFailure() called ${t.message}")
             }
-            override fun onResponse(call: Call<SignUpResponse>?, response: Response<SignUpResponse>) {
+            override fun onResponse(call: Call<UserResponse>?, response: Response<UserResponse>) {
                 val responseBody = response.body()
                 Log.d("로그", "LocalSigninInfoInputActivity - response $response responseBody $responseBody")
                 when {
@@ -149,7 +149,6 @@ class LocalSigninInfoInputActivity : AppCompatActivity() {
                         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
                         val editor = pref.edit()
                         editor.putString("jwt", responseBody.jwt)
-                        editor.putString("username", username)
                         editor.apply()
                         finish()
                         startActivity(Intent(this@LocalSigninInfoInputActivity, MainActivity::class.java))

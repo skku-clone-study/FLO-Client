@@ -7,7 +7,7 @@
     android:layout_gravity="center_vertical"
     android:orientation="vertical"
     android:padding="10sp"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,6 +40,7 @@
         android:layout_marginBottom="5sp">
         <com.google.android.material.textfield.TextInputEditText
             style="@style/EditTextStyle"
+            android:id="@+id/login_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
@@ -52,6 +53,7 @@
             android:textColor="@color/gray_900"/>
         <com.google.android.material.textfield.TextInputEditText
             style="@style/EditTextStyle"
+            android:id="@+id/login_emil_format"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
@@ -59,6 +61,7 @@
     </LinearLayout>
     <com.google.android.material.textfield.TextInputEditText
         style="@style/EditTextStyle"
+        android:id="@+id/login_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
@@ -80,7 +83,8 @@
             android:minWidth="0dp"
             android:text="로그인"
             android:textSize="17sp"
-            android:textColor="@color/gray_200" />
+            android:textColor="@color/white"
+            android:onClick="mOnLoginClick"/>
     </FrameLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
