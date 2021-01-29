@@ -1,9 +1,8 @@
-package com.example.cloneflow
+package com.example.cloneflow.services
 
 import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
 
 class SMSService {

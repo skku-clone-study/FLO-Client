@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="홈"
+        android:id="@+id/bottomNavigationHomeMenuId"
+        android:icon="@drawable/ic_flo_home"/>
+    <item android:title="둘러보기"
+        android:id="@+id/bottomNavigationChartMenuId"
+        android:icon="@drawable/ic_disc"/>
+    <item android:title="검색"
+        android:id="@+id/bottomNavigationSearchMenuId"
+        android:icon="@drawable/ic_flo_search"/>
+    <item android:title="보관함"
+        android:id="@+id/bottomNavigationStorageMenuId"
+        android:icon="@drawable/ic_unknown_user"/>
+</menu>

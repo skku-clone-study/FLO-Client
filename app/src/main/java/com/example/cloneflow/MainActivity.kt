@@ -7,22 +7,32 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.example.cloneflow.mainfragments.ChartFragment
+import com.example.cloneflow.mainfragments.HomeFragment
+import com.example.cloneflow.mainfragments.SearchFragment
+import com.example.cloneflow.mainfragments.StorageFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
-    val PREFERENCE = "com.example.cloneflow"
+
+
+    companion object {
+        private val homeFragment = HomeFragment()
+        private val chartFragment = ChartFragment()
+        private val searchFragment = SearchFragment()
+        private val storageFragment = StorageFragment()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.base)
         Log.d("로그", "MainActivity - onCreate() called")
-        val jwt = getToken()
-        val text3 = findViewById<TextView>(R.id.text3)
-        if(jwt == "") {
-            text3.text = "로그인 되지 않음"
-        } else {
-            text3.text = "로그인 된 상태"
-        }
+        initNavigationBar()
     }
 
     fun mOnSettingClick(v : View) {
@@ -30,8 +40,38 @@ class MainActivity : AppCompatActivity() {
         startActivity(settingsStartIntent)
     }
 
-    private fun getToken(): String? {
-        val pref = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE)
-        return pref.getString("jwt", "")
+    private fun initNavigationBar() {
+        Log.d("로그", "MainActivity - initNavigationBar() called")
+        val BottomNavigationView = findViewById<BottomNavigationView>(R.id.base_bot_nav_id)
+        BottomNavigationView.run {
+            setOnNavigationItemSelectedListener {
+                when(it.itemId) {
+                    R.id.bottomNavigationHomeMenuId -> {
+                        changeFramgent(homeFragment)
+                    }
+                    R.id.bottomNavigationChartMenuId -> {
+                        changeFramgent(chartFragment)
+                    }
+                    R.id.bottomNavigationSearchMenuId -> {
+                        changeFramgent(searchFragment)
+                    }
+                    R.id.bottomNavigationStorageMenuId -> {
+                        changeFramgent(storageFragment)
+                    }
+                }
+                true
+            }
+            selectedItemId = R.id.bottomNavigationHomeMenuId
+        }
     }
+
+    private fun changeFramgent(fragment: Fragment) {
+        val fragmentManager : FragmentManager = supportFragmentManager
+        val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.replace(R.id.base_frame_layout, fragment)
+        fragmentTransaction.commit()
+    }
+
 }

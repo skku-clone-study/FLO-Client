@@ -1,4 +1,4 @@
-package com.example.cloneflow
+package com.example.cloneflow.services
 
 import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
