@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cloneflow.*
@@ -63,10 +64,11 @@ class ChartFragment : Fragment() {
                             Log.d("로그", "ChartFragment - onResponse() called")
                             Log.d("로그", "Response - $responseBody")
                             val responseBodyResult = responseBody.result
-                            val floChart = responseBodyResult!!.floChart
-                            val increasingChart = responseBodyResult.increasingChart
-                            val foreignChart = responseBodyResult.foreignChart
-                            makeMusicChart(floChart!!, R.id.chart_card_flo)
+                            val floChart = responseBodyResult!!.floChart!!
+                            val increasingChart = responseBodyResult.increasingChart!!
+                            val foreignChart = responseBodyResult.foreignChart!!
+                            val charts : List<Chart> = listOf(floChart, increasingChart, foreignChart)
+                            makeMusicChart(charts)
                             val video = responseBodyResult.videos
                             makeVideoChart(responseBodyResult.videos!!)
                         }
@@ -90,14 +92,10 @@ class ChartFragment : Fragment() {
         return pref?.getString("jwt", null)
     }
 
-    private fun makeMusicChart(chart : Chart, id: Int) {
+    private fun makeMusicChart(charts : List<Chart>) {
         val recyclerView = view!!.findViewById<RecyclerView>(R.id.chart_recyclerview)
-        recyclerView.adapter = ChartRecyclerAdapter(chart.songs!!)
-        recyclerView.layoutManager = GridLayoutManager(this.requireContext(), 5, GridLayoutManager.HORIZONTAL, false)
-        val snapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(recyclerView)
-        val pagerDotIndicator = view!!.findViewById<ScrollingPagerIndicator>(R.id.indicator)
-        pagerDotIndicator.attachToRecyclerView(recyclerView)
+        recyclerView.adapter = ChartListRecyclerAdapter(charts)
+        recyclerView.layoutManager = LinearLayoutManager(this.requireContext())
     }
 
     private fun makeVideoChart(videos : List<Videos>) {

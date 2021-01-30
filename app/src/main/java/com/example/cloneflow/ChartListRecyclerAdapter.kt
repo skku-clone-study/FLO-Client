@@ -1,0 +1,48 @@
+package com.example.cloneflow
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import com.example.cloneflow.services.Chart
+import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+
+class ChartListRecyclerAdapter(val items : List<Chart>) : RecyclerView.Adapter<ChartListRecyclerAdapter.ViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int ): ViewHolder {
+        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.frag_chart_list_cardview, parent, false)
+        return ViewHolder(inflatedView)
+    }
+
+    override fun getItemCount(): Int = items.size
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = items[position]
+        holder.apply {
+            bind(item)
+        }
+    }
+
+    class ViewHolder(v : View) : RecyclerView.ViewHolder(v){
+        private var view : View = v
+        fun bind(item : Chart) {
+            val chartTitleText = view.findViewById<TextView>(R.id.chart_chart_name)
+            chartTitleText.text = when(item.playlistIdx) {
+                1 -> "FLO 차트"
+                2 -> "실시간 급상승 차트"
+                else -> "해외 인기 차트"
+            }
+            val chartUpdatedText = view.findViewById<TextView>(R.id.chart_updated)
+            chartUpdatedText.text = item.updated
+            val recyclerView = view.findViewById<RecyclerView>(R.id.chart_recyclerview)
+            recyclerView.adapter = ChartRecyclerAdapter(item.songs!!)
+            recyclerView.layoutManager = GridLayoutManager(view.context, 5, GridLayoutManager.HORIZONTAL, false)
+            val snapHelper = PagerSnapHelper()
+            snapHelper.attachToRecyclerView(recyclerView)
+            val pagerDotIndicator = view.findViewById<ScrollingPagerIndicator>(R.id.indicator)
+            pagerDotIndicator.attachToRecyclerView(recyclerView)
+        }
+    }
+}
