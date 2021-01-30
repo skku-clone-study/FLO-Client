@@ -17,7 +17,4 @@ class ErrorFragment : Fragment() {
         return view
     }
 
-    public fun newInstance() : ErrorFragment {
-        return ErrorFragment()
-    }
 }

@@ -1,7 +1,5 @@
 package com.example.cloneflow
 
-import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cloneflow.services.Songs
-import java.io.InputStream
 
 class ChartRecyclerAdapter(val items : List<Songs>) : RecyclerView.Adapter<ChartRecyclerAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int ): ViewHolder {

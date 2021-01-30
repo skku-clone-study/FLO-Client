@@ -1,23 +1,16 @@
 package com.example.cloneflow
 
-import android.app.ActionBar
-import android.app.Dialog
-import android.app.PendingIntent.getActivity
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import androidx.annotation.RequiresApi
 import android.app.AlertDialog
-import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import java.time.LocalDate
