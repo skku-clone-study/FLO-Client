@@ -3,6 +3,7 @@ package com.example.cloneflow.mainfragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cloneflow.ChartRecyclerAdapter
-import com.example.cloneflow.LoginActivity
-import com.example.cloneflow.MainActivity
-import com.example.cloneflow.R
+import com.example.cloneflow.*
 import com.example.cloneflow.services.Chart
 import com.example.cloneflow.services.ChartResponse
 import com.example.cloneflow.services.ChartService
@@ -71,6 +69,7 @@ class ChartFragment : Fragment() {
                             val foreignChart = responseBodyResult.foreignChart
                             makeMusicChart(floChart!!, R.id.chart_card_flo)
                             val video = responseBodyResult.videos
+                            makeVideoChart(responseBodyResult.videos!!)
                         }
                         else -> {
                             Log.d("로그", "ChartFragment - onResponse() called")
@@ -102,8 +101,12 @@ class ChartFragment : Fragment() {
         pagerDotIndicator.attachToRecyclerView(recyclerView)
     }
 
-    private fun makeVideoChart(video : Videos) {
-
+    private fun makeVideoChart(videos : List<Videos>) {
+        val videoReclerView = view!!.findViewById<RecyclerView>(R.id.video_recyclerview)
+        videoReclerView.adapter = VideoRecyclerAdapter(videos)
+        videoReclerView.layoutManager = GridLayoutManager(this.requireContext(), 1, GridLayoutManager.HORIZONTAL, false)
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(videoReclerView)
     }
 
 }
