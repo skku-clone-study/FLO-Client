@@ -1,58 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="190dp"
     android:layout_height="210dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="7dp"
-        app:cardElevation="0dp"
-        >
+        app:cardElevation="0dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="180dp"
             android:layout_height="102dp">
+
             <ImageView
+                android:id="@+id/video_list_thumbnail"
                 android:layout_width="180dp"
                 android:layout_height="103dp"
                 android:src="@drawable/frag_list_video_thumbnail_sample"
-                android:id="@+id/video_list_thumbnail"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/video_list_runningtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:background="#99000000"
                 android:padding="1.4dp"
                 android:text="03:41"
-                android:textSize="12sp"
                 android:textColor="#E6FFFFFF"
-                android:background="#99000000"/>
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
     <TextView
+        android:id="@+id/video_list_title"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="[MV] eight(에잇) (Prod.&amp;Feat. SUGA of BTS)"
         android:textColor="@color/gray_900"
-        android:layout_marginTop="10dp"
-        android:textSize="13dp"
-        android:id="@+id/video_list_title"
-        />
+        android:textSize="13sp" />
+
     <TextView
+        android:id="@+id/video_list_artist"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:text="아이유 (IU)"
         android:textColor="@color/gray_600"
-        android:layout_marginTop="2dp"
-        android:textSize="12dp"
-        android:id="@+id/video_list_artist"
-        />
+        android:textSize="12sp" />
 </LinearLayout>

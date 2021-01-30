@@ -36,102 +36,116 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="10"
-        android:layout_marginBottom="5sp">
+        android:layout_marginBottom="5sp"
+        android:weightSum="10">
+
         <com.google.android.material.textfield.TextInputEditText
-            style="@style/EditTextStyle"
             android:id="@+id/login_email"
+            style="@style/EditTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:hint="아이디(이메일)"
-            android:inputType="textUri"/>
+            android:inputType="textUri" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="\u0040"
-            android:textColor="@color/gray_900"/>
+            android:textColor="@color/gray_900" />
+
         <com.google.android.material.textfield.TextInputEditText
-            style="@style/EditTextStyle"
             android:id="@+id/login_emil_format"
+            style="@style/EditTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:hint="선택"/>
+            android:hint="선택" />
     </LinearLayout>
+
     <com.google.android.material.textfield.TextInputEditText
-        style="@style/EditTextStyle"
         android:id="@+id/login_pw"
+        style="@style/EditTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:layout_marginBottom="20sp"
         android:hint="비밀번호"
-        android:layout_marginBottom="20sp"/>
+        android:inputType="textPassword" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginBottom="5dp"
         android:layout_marginTop="10dp"
-        android:background="@color/flo_blue" >
+        android:layout_marginBottom="5dp"
+        android:background="@color/flo_blue">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@null"
             android:gravity="center"
-            android:minHeight="0dp"
             android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:onClick="mOnLoginClick"
             android:text="로그인"
-            android:textSize="17sp"
             android:textColor="@color/white"
-            android:onClick="mOnLoginClick"/>
+            android:textSize="17sp" />
     </FrameLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20sp">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="start"
                 android:text="아이디 찾기"
-                android:textColor="@color/gray_600"
-                android:layout_gravity="start"/>
+                android:textColor="@color/gray_600" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="start"
                 android:text=" | "
-                android:textColor="@color/gray_600"
-                android:layout_gravity="start"/>
+                android:textColor="@color/gray_600" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="start"
                 android:text="비밀번호 찾기"
-                android:textColor="@color/gray_600"
-                android:layout_gravity="start"/>
+                android:textColor="@color/gray_600" />
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="mOnLocalSigninClick"
             android:text="회원가입"
             android:textColor="@color/gray_800"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:onClick="mOnLocalSigninClick"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginBottom="5dp"
         android:layout_marginTop="10dp"
-        android:background="@color/gray_900" >
+        android:layout_marginBottom="5dp"
+        android:background="@color/gray_900">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -139,18 +153,20 @@
             android:background="@null"
             android:drawableLeft="@drawable/ic_tworld_lg"
             android:gravity="center"
-            android:minHeight="0dp"
             android:minWidth="0dp"
+            android:minHeight="0dp"
             android:text=" 아이디로 로그인"
-            android:textSize="17sp"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="17sp" />
     </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/grey_stroke" >
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/grey_stroke">
+
         <android.widget.Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -158,45 +174,45 @@
             android:background="@null"
             android:drawableLeft="@drawable/ic_baseline_phone_android_24"
             android:gravity="center"
-            android:minHeight="0dp"
             android:minWidth="0dp"
-            android:textSize="17sp"
-            android:textColor="@color/gray_900"
+            android:minHeight="0dp"
             android:text=" 휴대폰 번호로 로그인"
-            />
+            android:textColor="@color/gray_900"
+            android:textSize="17sp" />
     </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
+
         <android.widget.ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/oval_naver"
-            android:src="@drawable/ic_naver_logo"
-            android:padding="15sp"
             android:layout_marginEnd="15sp"
-            />
+            android:background="@drawable/oval_naver"
+            android:padding="15sp"
+            android:src="@drawable/ic_naver_logo" />
+
         <android.widget.ImageButton
             android:id="@+id/btn_kakao_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/oval_kakao"
-            android:src="@drawable/ic_kakao_logo"
-            android:padding="11sp"
             android:layout_marginEnd="15sp"
+            android:background="@drawable/oval_kakao"
             android:onClick="mOnKakaoLoginPopupClick"
-            />
+            android:padding="11sp"
+            android:src="@drawable/ic_kakao_logo" />
+
         <android.widget.ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/oval_apple"
-            android:src="@drawable/ic_apple_logo"
-            android:paddingEnd="15sp"
             android:paddingStart="15sp"
             android:paddingTop="10dp"
+            android:paddingEnd="15sp"
             android:paddingBottom="15dp"
-            />
+            android:src="@drawable/ic_apple_logo" />
     </LinearLayout>
 </LinearLayout>

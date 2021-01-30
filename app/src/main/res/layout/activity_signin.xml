@@ -1,61 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signin_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         android:paddingTop="5sp"
         android:paddingBottom="5sp"
-        android:id="@+id/signin_header"
-        >
-        <include layout="@layout/image_btn_back"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/image_btn_back" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:text="회원가입"
+            android:textColor="@color/gray_900"
             android:textSize="18sp"
-            android:textColor="@color/gray_900"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/signin_header"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="vertical"
         android:gravity="center"
-        android:padding="20sp">
+        android:orientation="vertical"
+        android:padding="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signin_header">
+
         <ImageView
             android:layout_width="60sp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:src="@drawable/logo_flo"
-            />
+            android:src="@drawable/logo_flo" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FLO에 오신 것을 환영합니다."
-            android:textColor="@color/gray_600"
             android:layout_marginTop="10sp"
             android:layout_marginBottom="60sp"
-            />
+            android:text="FLO에 오신 것을 환영합니다."
+            android:textColor="@color/gray_600" />
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginBottom="7dp"
             android:background="@color/flo_blue"
             android:onClick="mOnEmailSigninClick">
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -63,18 +66,20 @@
                 android:background="@null"
                 android:drawableLeft="@drawable/ic_baseline_mail_24"
                 android:gravity="center"
-                android:minHeight="0dp"
                 android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:onClick="mOnEmailSigninClick"
                 android:text=" 이메일 아이디로 가입하기"
-                android:textSize="15sp"
                 android:textColor="@android:color/white"
-                android:onClick="mOnEmailSigninClick"/>
+                android:textSize="15sp" />
         </FrameLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginBottom="7dp"
-            android:background="@color/gray_900" >
+            android:background="@color/gray_900">
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -82,17 +87,19 @@
                 android:background="@null"
                 android:drawableLeft="@drawable/ic_tworld_lg"
                 android:gravity="center"
-                android:minHeight="0dp"
                 android:minWidth="0dp"
+                android:minHeight="0dp"
                 android:text=" 아이디로 로그인"
-                android:textSize="15sp"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textSize="15sp" />
         </FrameLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginBottom="7dp"
-            android:background="#4BB148" >
+            android:background="#4BB148">
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -100,18 +107,20 @@
                 android:background="@null"
                 android:drawableLeft="@drawable/ic_naver_logo"
                 android:gravity="center"
-                android:minHeight="0dp"
                 android:minWidth="0dp"
+                android:minHeight="0dp"
                 android:text=" 네이버 아이디로 로그인"
-                android:textSize="15sp"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textSize="15sp" />
         </FrameLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginBottom="7dp"
             android:background="#FFE600"
             android:onClick="mOnKakaoLoginPopupClick">
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -119,18 +128,20 @@
                 android:background="@null"
                 android:drawableLeft="@drawable/ic_kakao_logo"
                 android:gravity="center"
-                android:minHeight="0dp"
                 android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:onClick="mOnKakaoLoginPopupClick"
                 android:text=" 카카오 계정으로 로그인"
-                android:textSize="15sp"
                 android:textColor="@color/gray_900"
-                android:onClick="mOnKakaoLoginPopupClick"/>
+                android:textSize="15sp" />
         </FrameLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginBottom="7dp"
-            android:background="@color/gray_900" >
+            android:background="@color/gray_900">
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -138,38 +149,40 @@
                 android:background="@null"
                 android:drawableLeft="@drawable/ic_apple_logo"
                 android:gravity="center"
-                android:minHeight="0dp"
                 android:minWidth="0dp"
+                android:minHeight="0dp"
                 android:text=" Apple로 로그인"
-                android:textSize="15sp"
+                android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textAllCaps="false"/>
+                android:textSize="15sp" />
         </FrameLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="90sp"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="아이디 찾기"
                 android:background="@android:color/transparent"
-                android:textColor="@color/gray_600"
-                />
+                android:text="아이디 찾기"
+                android:textColor="@color/gray_600" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="| "
-                android:textColor="@color/gray_600"/>
+                android:textColor="@color/gray_600" />
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비밀번호 찾기"
                 android:background="@android:color/transparent"
-                android:textColor="@color/gray_600"
-                />
+                android:text="비밀번호 찾기"
+                android:textColor="@color/gray_600" />
 
         </LinearLayout>
     </LinearLayout>

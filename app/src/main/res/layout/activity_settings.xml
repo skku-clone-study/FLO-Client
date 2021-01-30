@@ -9,46 +9,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="260dp"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="@color/gray_100"
-        android:orientation="horizontal"
         android:gravity="center"
-        >
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
         <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="96dp"
             android:layout_height="96dp"
+            android:padding="10sp"
             android:src="@drawable/ic_unknown_user"
-            app:civ_border_width="3dp"
             app:civ_border_color="@color/gray_400"
-            android:padding="10sp"/>
+            app:civ_border_width="3dp" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray_600"
-                android:text="로그인하지 않은 상태입니다. \n로그인 / 회원가입 후에 이용해 주세요."/>
+                android:text="로그인하지 않은 상태입니다. \n로그인 / 회원가입 후에 이용해 주세요."
+                android:textColor="@color/gray_600" />
+
             <android.widget.Button
-                android:layout_marginTop="14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="28sp"
+                android:layout_marginTop="14sp"
+                android:background="@drawable/corner_rounded_flo_blue_stroke"
+                android:onClick="mOnLoginSigninClick"
                 android:paddingStart="15sp"
                 android:paddingEnd="15sp"
                 android:text="로그인 / 회원가입"
-                android:background="@drawable/corner_rounded_flo_blue_stroke"
-                android:textColor="@color/flo_blue"
-                android:onClick="mOnLoginSigninClick"
-                />
+                android:textColor="@color/flo_blue" />
         </LinearLayout>
     </LinearLayout>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="mOnLogOutClicked"
         android:text="log out"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="mOnLogOutClicked"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,50 +30,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/signin_auth_by_phone_header"
-        android:padding="10sp">
+        android:padding="10sp"
+        app:layout_constraintTop_toBottomOf="@id/signin_auth_by_phone_header">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signin_abp_name"
             style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/signin_abp_name"
+            android:hint="이름"
             android:privateImeOptions="defaultInputmode=korean"
-            android:hint="이름" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signin_abp_phonenumber"
             style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="휴대폰 번호 (-제외)"
-            android:id="@+id/signin_abp_phonenumber"
-            app:layout_constraintTop_toBottomOf="@id/signin_abp_name"
-            android:inputType="number" />
+            android:inputType="number"
+            app:layout_constraintTop_toBottomOf="@id/signin_abp_name" />
+
         <android.widget.Button
             android:id="@+id/signin_auth_by_phone_send_message"
-            android:onClick="mOnSendMessageClicked"
             android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:background="@drawable/corner_rounded_grayy_400_btn"
+            android:onClick="mOnSendMessageClicked"
             android:paddingStart="15sp"
             android:paddingEnd="15sp"
-            android:layout_height="30sp"
-            app:layout_constraintEnd_toEndOf="@id/signin_abp_phonenumber"
-            app:layout_constraintTop_toTopOf="@id/signin_abp_phonenumber"
-            app:layout_constraintBottom_toBottomOf="@id/signin_abp_phonenumber"
             android:text="인증번호 전송"
             android:textColor="@color/white"
-            android:background="@drawable/corner_rounded_grayy_400_btn" />
+            app:layout_constraintBottom_toBottomOf="@id/signin_abp_phonenumber"
+            app:layout_constraintEnd_toEndOf="@id/signin_abp_phonenumber"
+            app:layout_constraintTop_toTopOf="@id/signin_abp_phonenumber" />
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signin_abp_auth_number"
             style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="인증번호 (6자리)"
-            android:id="@+id/signin_abp_auth_number"
-            app:layout_constraintTop_toBottomOf="@id/signin_abp_phonenumber"
             android:inputType="number"
             android:maxLength="6"
             android:visibility="invisible"
-            app:errorEnabled="true"/>
+            app:errorEnabled="true"
+            app:layout_constraintTop_toBottomOf="@id/signin_abp_phonenumber" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <android.widget.Button
@@ -82,11 +84,10 @@
         android:layout_height="wrap_content"
         android:background="@color/gray_400"
         android:clickable="false"
+        android:onClick="mOnPhoneAuthFinishBtnClicked"
         android:text="본인인증 완료"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:onClick="mOnPhoneAuthFinishBtnClicked"
-        />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
