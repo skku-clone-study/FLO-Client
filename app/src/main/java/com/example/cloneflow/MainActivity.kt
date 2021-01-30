@@ -10,10 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.cloneflow.mainfragments.ChartFragment
-import com.example.cloneflow.mainfragments.HomeFragment
-import com.example.cloneflow.mainfragments.SearchFragment
-import com.example.cloneflow.mainfragments.StorageFragment
+import com.example.cloneflow.mainfragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputEditText
 
@@ -25,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         private val chartFragment = ChartFragment()
         private val searchFragment = SearchFragment()
         private val storageFragment = StorageFragment()
+        private val errorFragment = ErrorFragment()
     }
 
 
@@ -32,7 +30,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.base)
         Log.d("로그", "MainActivity - onCreate() called")
-        initNavigationBar()
+
+        if (intent?.getStringExtra("error") != null && intent?.getStringExtra("error") == "1") {
+            changeFramgent(errorFragment)
+        } else {
+            initNavigationBar()
+        }
     }
 
     fun mOnSettingClick(v : View) {
@@ -42,8 +45,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initNavigationBar() {
         Log.d("로그", "MainActivity - initNavigationBar() called")
-        val BottomNavigationView = findViewById<BottomNavigationView>(R.id.base_bot_nav_id)
-        BottomNavigationView.run {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.base_bot_nav_id)
+        bottomNavigationView.run {
             setOnNavigationItemSelectedListener {
                 when(it.itemId) {
                     R.id.bottomNavigationHomeMenuId -> {

@@ -1,6 +1,7 @@
 package com.example.cloneflow.mainfragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,20 +11,20 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.chahinem.pageindicator.PageIndicator
 import com.example.cloneflow.ChartRecyclerAdapter
+import com.example.cloneflow.LoginActivity
+import com.example.cloneflow.MainActivity
 import com.example.cloneflow.R
 import com.example.cloneflow.services.Chart
 import com.example.cloneflow.services.ChartResponse
 import com.example.cloneflow.services.ChartService
 import com.example.cloneflow.services.Videos
-import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
-import me.relex.circleindicator.CircleIndicator2
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
 
 
 class ChartFragment : Fragment() {
@@ -41,7 +42,8 @@ class ChartFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_chart, container, false)
         val token = getToken()
         if(token == null ){
-
+            val loginIntent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(loginIntent)
         } else {
             val retrofit : Retrofit? = Retrofit.Builder().baseUrl(BaseUrl).addConverterFactory(
                 GsonConverterFactory.create()).build()
@@ -50,20 +52,35 @@ class ChartFragment : Fragment() {
             call.enqueue(object : Callback<ChartResponse>{
                 override fun onFailure(call: Call<ChartResponse>, t: Throwable) {
                     Log.d("로그", "ChartFragment - onFailure() called - $t")
+                    val errorIntent = Intent(requireActivity(), MainActivity::class.java)
+                    errorIntent.putExtra("error", "1")
+                    startActivity(errorIntent)
                 }
                 override fun onResponse(
                     call: Call<ChartResponse>,
                     response: Response<ChartResponse>
                 ) {
-                    Log.d("로그", "ChartFragment - onResponse() called")
-                    Log.d("로그", "Response - ${response.body()}")
-                    val responseBody = response.body()
-                    val responseBodyResult = responseBody!!.result
-                    val floChart = responseBodyResult!!.floChart
-                    val increasingChart = responseBodyResult.increasingChart
-                    val foreignChart = responseBodyResult.foreignChart
-                    makeMusicChart(floChart!!, R.id.chart_card_flo)
-                    val video = responseBodyResult.videos
+                    val responseBody = response.body()!!
+                    when {
+                        responseBody.isSuccess!! -> {
+                            Log.d("로그", "ChartFragment - onResponse() called")
+                            Log.d("로그", "Response - $responseBody")
+                            val responseBodyResult = responseBody.result
+                            val floChart = responseBodyResult!!.floChart
+                            val increasingChart = responseBodyResult.increasingChart
+                            val foreignChart = responseBodyResult.foreignChart
+                            makeMusicChart(floChart!!, R.id.chart_card_flo)
+                            val video = responseBodyResult.videos
+                        }
+                        else -> {
+                            Log.d("로그", "ChartFragment - onResponse() called")
+                            Log.d("로그", "However, Response is not successful")
+                            Log.d("로그", "[${responseBody.code}] ${responseBody.message}")
+                            val errorIntent = Intent(requireActivity(), MainActivity::class.java)
+                            errorIntent.putExtra("error", "1")
+                            startActivity(errorIntent)
+                        }
+                    }
                 }
             })
         }
@@ -81,18 +98,8 @@ class ChartFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(this.requireContext(), 5, GridLayoutManager.HORIZONTAL, false)
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
-        /*
-        val indicator: CircleIndicator2 = view!!.findViewById(R.id.recyclerViewIndicator)
-        indicator.attachToRecyclerView(recyclerView, snapHelper)
-         */
-        /*
-        val pageIndicator = view!!.findViewById<PageIndicator>(R.id.pageIndicator)
-        pageIndicator.attachTo(recyclerView)
-         */
-        /*
-        val recyclerview_pager_indicator = view!!.findViewById<IndefinitePagerIndicator>(R.id.recyclerview_pager_indicator)
-        recyclerview_pager_indicator.attachToRecyclerView(recyclerView)
-         */
+        val pagerDotIndicator = view!!.findViewById<ScrollingPagerIndicator>(R.id.indicator)
+        pagerDotIndicator.attachToRecyclerView(recyclerView)
     }
 
     private fun makeVideoChart(video : Videos) {
