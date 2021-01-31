@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_flo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".StreamingActivity"></activity>
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".LocalSigninInfoInputActivity" />
         <activity android:name=".ClauseSigninActivity" />
