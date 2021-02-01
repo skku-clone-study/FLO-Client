@@ -32,7 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/c"
-        app:layout_constraintEnd_toStartOf="@+id/ib"
         app:layout_constraintStart_toEndOf="@+id/c"
         app:layout_constraintTop_toTopOf="@+id/c">
 
@@ -73,7 +72,7 @@
     </RelativeLayout>
 
     <ImageButton
-        android:id="@+id/ib"
+        android:id="@+id/chart_song_play_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"

@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="20sp"
             android:paddingTop="20sp"
-            android:text="비디오"
+            android:text="영상"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />

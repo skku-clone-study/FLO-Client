@@ -69,8 +69,8 @@ class ChartFragment : Fragment() {
                             val foreignChart = responseBodyResult.foreignChart!!
                             val charts : List<Chart> = listOf(floChart, increasingChart, foreignChart)
                             makeMusicChart(charts)
-                            val video = responseBodyResult.videos
-                            makeVideoChart(responseBodyResult.videos!!)
+                            val video = responseBodyResult.videos!!
+                            makeVideoChart(video)
                         }
                         else -> {
                             Log.d("로그", "ChartFragment - onResponse() called")

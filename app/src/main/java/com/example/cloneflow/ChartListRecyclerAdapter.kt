@@ -1,8 +1,10 @@
 package com.example.cloneflow
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -20,14 +22,17 @@ class ChartListRecyclerAdapter(val items : List<Chart>) : RecyclerView.Adapter<C
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
+        val listener = View.OnClickListener { it ->
+            // StreamingActivity로 items[position].musicIdx
+        }
         holder.apply {
-            bind(item)
+            bind(item, listener)
         }
     }
 
     class ViewHolder(v : View) : RecyclerView.ViewHolder(v){
         private var view : View = v
-        fun bind(item : Chart) {
+        fun bind(item : Chart, listener : View.OnClickListener) {
             val chartTitleText = view.findViewById<TextView>(R.id.chart_chart_name)
             chartTitleText.text = when(item.playlistIdx) {
                 1 -> "FLO 차트"
@@ -43,6 +48,8 @@ class ChartListRecyclerAdapter(val items : List<Chart>) : RecyclerView.Adapter<C
             snapHelper.attachToRecyclerView(recyclerView)
             val pagerDotIndicator = view.findViewById<ScrollingPagerIndicator>(R.id.indicator)
             pagerDotIndicator.attachToRecyclerView(recyclerView)
+            val chartPlayBtn = view.findViewById<ImageButton>(R.id.chart_song_play_btn)
+            chartPlayBtn.setOnClickListener(listener)
         }
     }
 }
