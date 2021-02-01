@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cloneflow.*
+import com.example.cloneflow.adapters.ChartListRecyclerAdapter
+import com.example.cloneflow.adapters.VideoRecyclerAdapter
 import com.example.cloneflow.services.Chart
 import com.example.cloneflow.services.ChartResponse
 import com.example.cloneflow.services.ChartService
@@ -22,7 +24,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
 
 
 class ChartFragment : Fragment() {

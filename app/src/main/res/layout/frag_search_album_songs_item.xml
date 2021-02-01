@@ -31,7 +31,7 @@
             android:id="@+id/album_song_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/album_song_artist"
+            android:layout_above="@+id/album_song_artist_text"
             android:layout_toEndOf="@+id/album_song_idx"
             android:gravity="center">
             <TextView
@@ -57,7 +57,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/album_song_artist"
+            android:id="@+id/album_song_artist_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/album_song_idx"

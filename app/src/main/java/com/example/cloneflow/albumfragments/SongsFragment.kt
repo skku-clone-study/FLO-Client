@@ -1,60 +1,87 @@
 package com.example.cloneflow.albumfragments
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.cloneflow.LoginActivity
+import com.example.cloneflow.MainActivity
 import com.example.cloneflow.R
+import com.example.cloneflow.adapters.InfoTrackRecyclerAdapter
+import com.example.cloneflow.services.AlbumTrackInfoResponse
+import com.example.cloneflow.services.InfoService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class SongsFragment(val idx : Int) : Fragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SongsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SongsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    companion object {
+        var BaseUrl = "https://www.heedong.dev/"
+        val PREFERENCE = "com.example.cloneflow"
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_songs, container, false)
+        val view =  inflater.inflate(R.layout.fragment_songs, container, false)
+        val token = getToken()
+        if(token == null ){
+            val loginIntent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(loginIntent)
+        } else {
+            val retrofit : Retrofit? = Retrofit.Builder().baseUrl(BaseUrl).addConverterFactory(
+                GsonConverterFactory.create()).build()
+            val service = retrofit!!.create(InfoService.AlbumTrackInfoService::class.java)
+            val call = service.getAlbumTrackInfo(token = token, idx = idx)
+            call.enqueue(object : Callback<AlbumTrackInfoResponse>{
+                override fun onFailure(call: Call<AlbumTrackInfoResponse>, t: Throwable) {
+                    Log.d("로그", "SongsFragment - onFailure() called - $t")
+                }
+                override fun onResponse(
+                    call: Call<AlbumTrackInfoResponse>,
+                    response: Response<AlbumTrackInfoResponse>
+                ) {
+                    Log.d("로그", "SongsFragment - onResponse() called")
+                    val responseBody = response.body()!!
+                    when {
+                        responseBody.isSuccess!! -> {
+                            Log.d("로그", "SongFragment - onResponse() called")
+                            Log.d("로그", "Response - $responseBody")
+                            val albumTracks = responseBody.result
+                            if (albumTracks != null) {
+                                val trackRecyclerView = view.findViewById<RecyclerView>(R.id.info_album_song_recyclerview)
+                                trackRecyclerView.adapter = InfoTrackRecyclerAdapter(albumTracks)
+                                trackRecyclerView.layoutManager = LinearLayoutManager(context)
+                            } // else { 곡이 없습니다.. 창 띄우기 }
+                        }
+                        else -> {
+                            Log.d("로그", "SongFragment - onResponse() called")
+                            Log.d("로그", "However, Response is not successful")
+                            Log.d("로그", "[${responseBody.code}] ${responseBody.message}")
+                            val errorIntent = Intent(requireActivity(), MainActivity::class.java)
+                            errorIntent.putExtra("error", "1")
+                            startActivity(errorIntent)
+                        }
+                    }
+                }
+            })
+        }
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SongsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SongsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun getToken(): String? {
+        val pref = this.activity?.getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE)
+        return pref?.getString("jwt", null)
     }
+
 }
