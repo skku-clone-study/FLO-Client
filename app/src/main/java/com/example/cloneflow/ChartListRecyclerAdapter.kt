@@ -22,17 +22,19 @@ class ChartListRecyclerAdapter(val items : List<Chart>) : RecyclerView.Adapter<C
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
+        /*
         val listener = View.OnClickListener { it ->
             // StreamingActivity로 items[position].musicIdx
         }
+         */
         holder.apply {
-            bind(item, listener)
+            bind(item)// bind(item, listener)
         }
     }
 
     class ViewHolder(v : View) : RecyclerView.ViewHolder(v){
         private var view : View = v
-        fun bind(item : Chart, listener : View.OnClickListener) {
+        fun bind(item : Chart) { //(item : Chart, listener : View.OnClickListener)
             val chartTitleText = view.findViewById<TextView>(R.id.chart_chart_name)
             chartTitleText.text = when(item.playlistIdx) {
                 1 -> "FLO 차트"
@@ -49,7 +51,7 @@ class ChartListRecyclerAdapter(val items : List<Chart>) : RecyclerView.Adapter<C
             val pagerDotIndicator = view.findViewById<ScrollingPagerIndicator>(R.id.indicator)
             pagerDotIndicator.attachToRecyclerView(recyclerView)
             val chartPlayBtn = view.findViewById<ImageButton>(R.id.chart_song_play_btn)
-            chartPlayBtn.setOnClickListener(listener)
+            //chartPlayBtn.setOnClickListener(listener)
         }
     }
 }
