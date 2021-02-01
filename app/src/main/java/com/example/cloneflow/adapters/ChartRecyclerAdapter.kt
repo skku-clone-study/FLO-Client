@@ -1,4 +1,4 @@
-package com.example.cloneflow
+package com.example.cloneflow.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,12 +8,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cloneflow.R
 import com.example.cloneflow.services.Songs
 
 class ChartRecyclerAdapter(val items : List<Songs>) : RecyclerView.Adapter<ChartRecyclerAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int ): ViewHolder {
         val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.frag_chart_list_item, parent, false)
-        return ViewHolder(inflatedView)
+        return ViewHolder(
+            inflatedView
+        )
     }
 
     override fun getItemCount(): Int = items.size

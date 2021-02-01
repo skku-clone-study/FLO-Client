@@ -1,4 +1,4 @@
-package com.example.cloneflow
+package com.example.cloneflow.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cloneflow.R
 import com.example.cloneflow.services.Videos
 
 class VideoRecyclerAdapter(val items : List<Videos>) : RecyclerView.Adapter<VideoRecyclerAdapter.ViewHolder>() {
@@ -16,12 +17,14 @@ class VideoRecyclerAdapter(val items : List<Videos>) : RecyclerView.Adapter<Vide
         viewType: Int
     ): ViewHolder {
         val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.frag_video_list_item, parent, false)
-        return ViewHolder(inflatedView)
+        return ViewHolder(
+            inflatedView
+        )
     }
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: VideoRecyclerAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.apply {
             bind(item)

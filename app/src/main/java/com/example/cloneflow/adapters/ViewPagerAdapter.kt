@@ -1,4 +1,4 @@
-package com.example.cloneflow
+package com.example.cloneflow.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

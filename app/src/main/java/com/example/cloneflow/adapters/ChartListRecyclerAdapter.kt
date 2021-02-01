@@ -1,6 +1,5 @@
-package com.example.cloneflow
+package com.example.cloneflow.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +8,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cloneflow.R
 import com.example.cloneflow.services.Chart
 import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
 
 class ChartListRecyclerAdapter(val items : List<Chart>) : RecyclerView.Adapter<ChartListRecyclerAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int ): ViewHolder {
         val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.frag_chart_list_cardview, parent, false)
-        return ViewHolder(inflatedView)
+        return ViewHolder(
+            inflatedView
+        )
     }
 
     override fun getItemCount(): Int = items.size
@@ -44,7 +46,8 @@ class ChartListRecyclerAdapter(val items : List<Chart>) : RecyclerView.Adapter<C
             val chartUpdatedText = view.findViewById<TextView>(R.id.chart_updated)
             chartUpdatedText.text = item.updated
             val recyclerView = view.findViewById<RecyclerView>(R.id.chart_recyclerview)
-            recyclerView.adapter = ChartRecyclerAdapter(item.songs!!)
+            recyclerView.adapter =
+                ChartRecyclerAdapter(item.songs!!)
             recyclerView.layoutManager = GridLayoutManager(view.context, 5, GridLayoutManager.HORIZONTAL, false)
             val snapHelper = PagerSnapHelper()
             snapHelper.attachToRecyclerView(recyclerView)

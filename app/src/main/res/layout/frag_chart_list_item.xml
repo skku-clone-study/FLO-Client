@@ -33,7 +33,8 @@
         android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/c"
         app:layout_constraintStart_toEndOf="@+id/c"
-        app:layout_constraintTop_toTopOf="@+id/c">
+        app:layout_constraintTop_toTopOf="@+id/c"
+        app:layout_constraintEnd_toStartOf="@+id/chart_song_play_btn">
 
         <TextView
             android:id="@+id/chart_rank_text"
