@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -168,4 +169,8 @@ class InfoAlbumActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
+    fun onBackBtnPressed(v : View){
+        finish()
+        overridePendingTransition(R.anim.none, R.anim.fade_out)
+    }
 }

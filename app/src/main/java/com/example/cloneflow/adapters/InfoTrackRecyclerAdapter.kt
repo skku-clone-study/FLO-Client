@@ -24,19 +24,19 @@ class InfoTrackRecyclerAdapter(val items : List<AlbumTrackResult>) : RecyclerVie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.apply {
-            bind(item)
+            bind(item, position)
         }
     }
 
     class ViewHolder(v : View) : RecyclerView.ViewHolder(v) {
         private var view : View = v
-        fun bind(item : AlbumTrackResult) {
+        fun bind(item : AlbumTrackResult, pos : Int) {
             val trackIdx = view.findViewById<TextView>(R.id.album_song_idx)
             val isTitle = view.findViewById<TextView>(R.id.album_song_is_title_mark)
             val trackTitle = view.findViewById<TextView>(R.id.album_song_title_text)
             val trackArtist = view.findViewById<TextView>(R.id.album_song_artist_text)
 
-            trackIdx.text = String.format("%02d", item.musicIdx)
+            trackIdx.text = String.format("%02d", pos+1)
             if(item.isTitleOfAlbum == "FALSE") {isTitle.visibility = View.GONE}
             trackTitle.text = item.title
             trackArtist.text = item.artist
