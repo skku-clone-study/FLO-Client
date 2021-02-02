@@ -5,12 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cloneflow.InfoAlbumActivity
 import com.example.cloneflow.R
+import com.example.cloneflow.StreamingActivity
 import com.example.cloneflow.services.Songs
 import com.google.android.material.internal.ContextUtils.getActivity
 
@@ -47,6 +49,13 @@ class ChartRecyclerAdapter(val items : List<Songs>) : RecyclerView.Adapter<Chart
                 val albumInfoIntent = Intent(view.context, InfoAlbumActivity::class.java)
                 albumInfoIntent.putExtra("albumIdx", albumIdx)
                 view.context.startActivity(albumInfoIntent)
+            }
+            val musicPlayBtn = view.findViewById<ImageButton>(R.id.chart_song_play_btn)
+            musicPlayBtn.setOnClickListener{
+                val musicIdx = item.musicIdx
+                val musicPlayIntent = Intent(view.context, StreamingActivity::class.java)
+                musicPlayIntent.putExtra("musicIdx", musicIdx)
+                view.context.startActivity(musicPlayIntent)
             }
             Log.d("로그", "ViewHolder - bind(${item.title}) called")
         }
