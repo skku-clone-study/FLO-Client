@@ -39,7 +39,6 @@ class InfoAlbumActivity : AppCompatActivity() {
         private val chartFragment = ChartFragment()
         private val searchFragment = SearchFragment()
         private val storageFragment = StorageFragment()
-        private val errorFragment = ErrorFragment()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +46,7 @@ class InfoAlbumActivity : AppCompatActivity() {
         setContentView(R.layout.activity_info_album)
         val albumIndex = intent.getIntExtra("albumIdx", 0)
         if(albumIndex!=0){
+            initNavigationBar()
             val token = getToken()
             if(token == null ){
                 val loginIntent = Intent(this, LoginActivity::class.java)
@@ -159,6 +159,7 @@ class InfoAlbumActivity : AppCompatActivity() {
     }
 
     private fun changeFramgent(fragment: Fragment) {
+        Log.d("로그", "InfoAlbumActivity - changeFramgent(${fragment}) called")
         val fragmentManager : FragmentManager = supportFragmentManager
         val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)

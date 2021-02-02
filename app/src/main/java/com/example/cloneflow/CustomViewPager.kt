@@ -25,6 +25,7 @@ class CustomViewPager : ViewPager {
                 )
                 val h = child.measuredHeight
                 if (h > height) height = h
+                height += 30 // bottom navigation view의 높이만큼 더해줌
             }
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
         }
