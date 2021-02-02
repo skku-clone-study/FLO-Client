@@ -10,11 +10,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.cloneflow.InfoAlbumActivity
+import com.example.cloneflow.infoactivities.InfoAlbumActivity
 import com.example.cloneflow.R
 import com.example.cloneflow.StreamingActivity
 import com.example.cloneflow.services.Songs
-import com.google.android.material.internal.ContextUtils.getActivity
 
 class ChartRecyclerAdapter(val items : List<Songs>) : RecyclerView.Adapter<ChartRecyclerAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int ): ViewHolder {

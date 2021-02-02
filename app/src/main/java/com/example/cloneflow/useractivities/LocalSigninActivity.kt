@@ -1,10 +1,11 @@
-package com.example.cloneflow
+package com.example.cloneflow.useractivities
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cloneflow.R
 
 class LocalSigninActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

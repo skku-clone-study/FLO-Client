@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cloneflow.LoginActivity
+import com.example.cloneflow.useractivities.LoginActivity
 import com.example.cloneflow.MainActivity
 import com.example.cloneflow.R
 import com.example.cloneflow.adapters.InfoTrackRecyclerAdapter

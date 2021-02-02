@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.cloneflow.useractivities.LoginActivity
 
 class SettingsActivity : AppCompatActivity() {
     val PREFERENCE = "com.example.cloneflow"

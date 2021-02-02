@@ -1,4 +1,4 @@
-package com.example.cloneflow
+package com.example.cloneflow.useractivities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,6 +12,7 @@ import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.cloneflow.R
 import com.example.cloneflow.services.SMSResponse
 import com.example.cloneflow.services.SMSService
 import com.google.android.material.textfield.TextInputEditText
@@ -92,18 +93,24 @@ class PhoneAuthActivity : AppCompatActivity() {
                                     val smsResponse2 = response.body()
                                     val isSuccess2 = smsResponse2?.isSuccess
                                     if(isSuccess2!!) {
-                                        phoneAuthFinBtn.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.flo_blue))
+                                        phoneAuthFinBtn.setBackgroundColor(ContextCompat.getColor(applicationContext,
+                                            R.color.flo_blue
+                                        ))
                                         phoneAuthFinBtn.isClickable = true
                                         authInput.error = null
                                     } else {
-                                        phoneAuthFinBtn.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.gray_400))
+                                        phoneAuthFinBtn.setBackgroundColor(ContextCompat.getColor(applicationContext,
+                                            R.color.gray_400
+                                        ))
                                         phoneAuthFinBtn.isClickable = false
                                         authInput.error = "인증번호를 다시 입력해주세요"
                                     }
                                 }
                             })
                         } else {
-                            phoneAuthFinBtn.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.gray_400))
+                            phoneAuthFinBtn.setBackgroundColor(ContextCompat.getColor(applicationContext,
+                                R.color.gray_400
+                            ))
                             phoneAuthFinBtn.isClickable = false
                             authInput.error = null
                         }

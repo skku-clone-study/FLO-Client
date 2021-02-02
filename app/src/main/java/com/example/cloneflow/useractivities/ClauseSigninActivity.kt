@@ -1,4 +1,4 @@
-package com.example.cloneflow
+package com.example.cloneflow.useractivities
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.cloneflow.R
 import java.time.LocalDate
 
 class ClauseSigninActivity : AppCompatActivity() {
@@ -23,7 +24,9 @@ class ClauseSigninActivity : AppCompatActivity() {
     }
 
     fun mOnAgeDialogOpen(v : View) {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this@ClauseSigninActivity, R.style.CustomDialog)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this@ClauseSigninActivity,
+            R.style.CustomDialog
+        )
         builder.setMessage("고객님의 연령대를 선택해 주세요.")
             .setNegativeButton("만 14세 미만"){ _ : DialogInterface, _: Int -> mOnClauseNextClick()}
             .setPositiveButton("만 14세 이상"){ _: DialogInterface, _: Int -> mOnClauseNextClick()}
@@ -31,7 +34,8 @@ class ClauseSigninActivity : AppCompatActivity() {
         alertDialog.show()
         alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#272727"))
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#4D2BFF"))
-        alertDialog.window?.attributes?.windowAnimations = R.style.CustomDialogAnimation
+        alertDialog.window?.attributes?.windowAnimations =
+            R.style.CustomDialogAnimation
     }
 
     private fun mOnClauseNextClick(){
@@ -81,10 +85,14 @@ class ClauseSigninActivity : AppCompatActivity() {
         val cBox3 = findViewById<CheckBox>(R.id.signin_radio_clause3)
         btnNext.isClickable = cBox1.isChecked && cBox2.isChecked && cBox3.isChecked
         if(cBox1.isChecked && cBox2.isChecked && cBox3.isChecked) {
-            btnNext.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
+            btnNext.setTextColor(ContextCompat.getColor(applicationContext,
+                R.color.white
+            ))
             btnNext.isClickable = true
         } else {
-            btnNext.setTextColor(ContextCompat.getColor(applicationContext, R.color.gray_400))
+            btnNext.setTextColor(ContextCompat.getColor(applicationContext,
+                R.color.gray_400
+            ))
             btnNext.isClickable = false
         }
         val cBox4 = findViewById<CheckBox>(R.id.signin_radio_clause4)
@@ -106,7 +114,8 @@ class ClauseSigninActivity : AppCompatActivity() {
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#4D2BFF"))
-        alertDialog.window?.attributes?.windowAnimations = R.style.CustomDialogAnimation
+        alertDialog.window?.attributes?.windowAnimations =
+            R.style.CustomDialogAnimation
     }
 
 }

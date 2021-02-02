@@ -1,4 +1,4 @@
-package com.example.cloneflow
+package com.example.cloneflow.useractivities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +13,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import com.example.cloneflow.MainActivity
+import com.example.cloneflow.R
 import com.example.cloneflow.services.UserResponse
 import com.example.cloneflow.services.UserService
 import com.google.android.material.textfield.TextInputEditText
@@ -81,7 +83,9 @@ class LocalSigninInfoInputActivity : AppCompatActivity() {
                         pw2Input.error = "비밀번호가 올바르지 않습니다."
                         Log.d("로그", "LocalSigninInfoInputActivity - 비밀번호가 올바르지 않습니다")
                         inputFinBtn.isClickable = false
-                        inputFinBtn.setTextColor(ContextCompat.getColor(applicationContext, R.color.gray_200))
+                        inputFinBtn.setTextColor(ContextCompat.getColor(applicationContext,
+                            R.color.gray_200
+                        ))
                     }
                 }
             }
@@ -95,10 +99,14 @@ class LocalSigninInfoInputActivity : AppCompatActivity() {
                 if(isPwCorrect) {
                     Log.d("로그", "LocalSigninInfoInputActivity - all input field is filled")
                     inputFinBtn.isClickable = true
-                    inputFinBtn.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
+                    inputFinBtn.setTextColor(ContextCompat.getColor(applicationContext,
+                        R.color.white
+                    ))
                 } else {
                     inputFinBtn.isClickable = false
-                    inputFinBtn.setTextColor(ContextCompat.getColor(applicationContext, R.color.gray_200))
+                    inputFinBtn.setTextColor(ContextCompat.getColor(applicationContext,
+                        R.color.gray_200
+                    ))
                 }
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }

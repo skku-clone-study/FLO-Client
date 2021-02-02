@@ -1,4 +1,4 @@
-package com.example.cloneflow
+package com.example.cloneflow.useractivities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.cloneflow.MainActivity
+import com.example.cloneflow.R
 import com.example.cloneflow.services.UserResponse
 import com.example.cloneflow.services.UserService
 import com.google.android.material.textfield.TextInputEditText

@@ -12,18 +12,18 @@
         android:roundIcon="@mipmap/ic_flo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".InfoArtistActivity"></activity>
-        <activity android:name=".InfoSongActivity" />
-        <activity android:name=".InfoAlbumActivity" />
+        <activity android:name=".infoactivities.InfoArtistActivity"></activity>
+        <activity android:name=".infoactivities.InfoSongActivity" />
+        <activity android:name=".infoactivities.InfoAlbumActivity" />
         <activity android:name=".StreamingActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".LocalSigninInfoInputActivity" />
-        <activity android:name=".ClauseSigninActivity" />
-        <activity android:name=".LocalSigninActivity" />
-        <activity android:name=".PhoneAuthActivity" />
+        <activity android:name=".useractivities.LoginActivity" />
+        <activity android:name=".useractivities.LocalSigninInfoInputActivity" />
+        <activity android:name=".useractivities.ClauseSigninActivity" />
+        <activity android:name=".useractivities.LocalSigninActivity" />
+        <activity android:name=".useractivities.PhoneAuthActivity" />
         <activity
-            android:name=".KakaoLoginPopupActivity"
+            android:name=".useractivities.KakaoLoginPopupActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".MainActivity">
             <intent-filter>

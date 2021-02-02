@@ -1,4 +1,4 @@
-package com.example.cloneflow
+package com.example.cloneflow.infoactivities
 
 import android.content.Context
 import android.content.Intent
@@ -15,6 +15,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
+import com.example.cloneflow.MainActivity
+import com.example.cloneflow.R
 import com.example.cloneflow.adapters.ViewPagerAdapter
 import com.example.cloneflow.albumfragments.DetailFragment
 import com.example.cloneflow.albumfragments.SongsFragment
@@ -22,6 +24,7 @@ import com.example.cloneflow.albumfragments.VideoFragment
 import com.example.cloneflow.mainfragments.*
 import com.example.cloneflow.services.AlbumInfoResponse
 import com.example.cloneflow.services.InfoService
+import com.example.cloneflow.useractivities.LoginActivity
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
@@ -43,7 +46,10 @@ class InfoAlbumActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        overridePendingTransition(R.anim.fade_in, R.anim.none)
+        overridePendingTransition(
+            R.anim.fade_in,
+            R.anim.none
+        )
         setContentView(R.layout.activity_info_album)
         val albumIndex = intent.getIntExtra("albumIdx", 0)
         if(albumIndex!=0){
@@ -126,7 +132,10 @@ class InfoAlbumActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         if(isFinishing){
-            overridePendingTransition(R.anim.none, R.anim.fade_out)
+            overridePendingTransition(
+                R.anim.none,
+                R.anim.fade_out
+            )
         }
     }
 
@@ -163,7 +172,10 @@ class InfoAlbumActivity : AppCompatActivity() {
         Log.d("로그", "InfoAlbumActivity - changeFramgent(${fragment}) called")
         val fragmentManager : FragmentManager = supportFragmentManager
         val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+        fragmentTransaction.setCustomAnimations(
+            R.anim.fade_in,
+            R.anim.fade_out
+        )
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.replace(R.id.base_frame_layout, fragment)
         fragmentTransaction.commit()
@@ -171,6 +183,9 @@ class InfoAlbumActivity : AppCompatActivity() {
 
     fun onBackBtnPressed(v : View){
         finish()
-        overridePendingTransition(R.anim.none, R.anim.fade_out)
+        overridePendingTransition(
+            R.anim.none,
+            R.anim.fade_out
+        )
     }
 }
