@@ -1,5 +1,6 @@
 package com.example.cloneflow.adapters
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cloneflow.InfoAlbumActivity
 import com.example.cloneflow.R
 import com.example.cloneflow.services.Songs
+import com.google.android.material.internal.ContextUtils.getActivity
 
 class ChartRecyclerAdapter(val items : List<Songs>) : RecyclerView.Adapter<ChartRecyclerAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int ): ViewHolder {
@@ -39,6 +42,12 @@ class ChartRecyclerAdapter(val items : List<Songs>) : RecyclerView.Adapter<Chart
             titleTextView.text = item.title.toString()
             val artistTextView = view.findViewById<TextView>(R.id.chart_artist_text)
             artistTextView.text = item.artist.toString()
+            thumbnailView.setOnClickListener {
+                val albumIdx = item.albumIdx
+                val albumInfoIntent = Intent(view.context, InfoAlbumActivity::class.java)
+                albumInfoIntent.putExtra("albumIdx", albumIdx)
+                view.context.startActivity(albumInfoIntent)
+            }
             Log.d("로그", "ViewHolder - bind(${item.title}) called")
         }
     }

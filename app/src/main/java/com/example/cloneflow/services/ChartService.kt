@@ -37,6 +37,7 @@ data class Chart(
 data class Songs(
     @SerializedName("ranking") var ranking : Int? = null,
     @SerializedName("musicIdx") var musicIdx : Int? = null,
+    @SerializedName("albumIdx") var albumIdx : Int? = null,
     @SerializedName("cover") var cover : String? = null,
     @SerializedName("title") var title : String? = null,
     @SerializedName("artist") var artist : String? = null

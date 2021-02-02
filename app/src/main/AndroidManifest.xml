@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_flo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".StreamingActivity"></activity>
+        <activity android:name=".InfoArtistActivity"></activity>
+        <activity android:name=".InfoSongActivity" />
+        <activity android:name=".InfoAlbumActivity" />
+        <activity android:name=".StreamingActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".LocalSigninInfoInputActivity" />

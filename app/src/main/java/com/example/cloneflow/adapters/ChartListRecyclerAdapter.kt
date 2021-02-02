@@ -24,13 +24,8 @@ class ChartListRecyclerAdapter(val items : List<Chart>) : RecyclerView.Adapter<C
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        /*
-        val listener = View.OnClickListener { it ->
-            // StreamingActivity로 items[position].musicIdx
-        }
-         */
         holder.apply {
-            bind(item)// bind(item, listener)
+            bind(item)
         }
     }
 
@@ -54,7 +49,6 @@ class ChartListRecyclerAdapter(val items : List<Chart>) : RecyclerView.Adapter<C
             val pagerDotIndicator = view.findViewById<ScrollingPagerIndicator>(R.id.indicator)
             pagerDotIndicator.attachToRecyclerView(recyclerView)
             val chartPlayBtn = view.findViewById<ImageButton>(R.id.chart_song_play_btn)
-            //chartPlayBtn.setOnClickListener(listener)
         }
     }
 }
