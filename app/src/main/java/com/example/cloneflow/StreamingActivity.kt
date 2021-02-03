@@ -82,7 +82,7 @@ class StreamingActivity : AppCompatActivity() {
                                 findViewById<TextView>(R.id.streaming_title).text = result.title.toString()
                                 findViewById<TextView>(R.id.streaming_artist).text = result.artist.toString()
                                 findViewById<TextView>(R.id.streaming_lyric).text = result.lyrics.toString()
-                                Glide.with(this@StreamingActivity).load(result.src.toString())
+                                Glide.with(this@StreamingActivity).load(result.cover.toString())
                                     .into(findViewById(R.id.streaming_albumcover))
                                 mediaPlayer = MediaPlayer()
                                 seekbar = findViewById(R.id.streaming_seekbar)
@@ -104,20 +104,18 @@ class StreamingActivity : AppCompatActivity() {
                                         val ttt : Int = seekBar!!.progress
                                         mediaPlayer.seekTo(ttt)
                                         mediaPlayer.start()
+                                        handleBtn.setImageDrawable(ContextCompat.getDrawable(this@StreamingActivity, R.drawable.ic_pause))
                                         StreamingThread().start()
                                     }
                                 })
                                 handleBtn.setOnClickListener{
                                     Log.d("로그", "StreamingActivity - handlebtn clicked")
                                     if(isPlaying){ // pause를 누른 경우
-                                        Log.d("로그", "isplaying $isPlaying isFirst $isFirst lets pause streaming")
                                         pauseStreaming()
                                     } else { // start를 누른 경우
                                         if(isFirst) { // 처음 트는 경우
-                                            Log.d("로그", "isplaying $isPlaying isFirst $isFirst lets start streaming")
                                             startStreaming()
                                         } else { // 멈췄다가 다시 트는 경우
-                                            Log.d("로그", "isplaying $isPlaying isFirst $isFirst lets restart streaming")
                                             restartStreaming()
                                         }
                                     }
@@ -155,10 +153,7 @@ class StreamingActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun startStreaming(){
         Log.d("로그", "StreamingActivity - startStreaming() called")
-        StreamingThread().start()
-
-        handleBtn.setImageDrawable(ContextCompat.getDrawable(this@StreamingActivity, R.drawable.ic_pause))
-        val URI = Uri.parse("https://www.bensound.com/bensound-music/bensound-summer.mp3")
+        val URI = Uri.parse("https://r2---sn-3u-bh2e.googlevideo.com/videoplayback?expire=1612366063&ei=j2waYP75JbiFlQTrlJW4Bg&ip=203.229.147.89&id=o-AKdRJUF0WqnRXi1k08yTblD0lUH5CZZ6wL84eSZ6NBwE&itag=140&source=youtube&requiressl=yes&hcs=yes&mh=v-&mm=31%2C29&mn=sn-3u-bh2e%2Csn-3u-bh2e&ms=au%2Crdu&mv=m&mvi=2&pcm2cms=yes&pl=19&rmhost=r7---sn-3u-bh2e.googlevideo.com&shardbypass=yes&smhost=r7---sn-3u-bh2ll.googlevideo.com&initcwndbps=863750&vprv=1&mime=audio%2Fmp4&ns=2daCWx3AD1bJFYMdarg0byAF&gir=yes&clen=3207289&dur=198.135&lmt=1611952280808383&mt=1612344286&fvip=7&keepalive=yes&c=WEB&txp=5531432&n=Jy6Iv7w9mas2ElTwL&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&lsparams=hcs%2Cmh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl%2Crmhost%2Cshardbypass%2Csmhost%2Cinitcwndbps&lsig=AG3C_xAwRQIgVXm-hHv4EW6C7aNfW8ueNmx83X4PmTf7U5GSEmZRNTgCIQCD_asWXqvkcW6QrC3qBg1mr_m_loGthjkcT3Gn9yB-kQ%3D%3D&sig=AOq0QJ8wRQIgJmW3r4O9WfwiZZEfsbfvD2gYbl6icLoUUn4vTL6K9AMCIQDWIPI7PKIsieT7DRPbqDJ2DJ82QunUuz369y5g7Qe5Gw==&ratebypass=yes")
         val audioAttributes = AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_MOVIE).build()
         mediaPlayer.setAudioAttributes(audioAttributes)
         mediaPlayer.reset()
@@ -176,7 +171,8 @@ class StreamingActivity : AppCompatActivity() {
         seekbar.max = a
         isFirst = false
         isPlaying = true
-        Log.d("로그", "isplaying $isPlaying isfirst $isFirst")
+        handleBtn.setImageDrawable(ContextCompat.getDrawable(this@StreamingActivity, R.drawable.ic_pause))
+        StreamingThread().start()
     }
 
     private fun restartStreaming(){
