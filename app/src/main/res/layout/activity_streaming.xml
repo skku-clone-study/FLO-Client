@@ -49,15 +49,15 @@
                 android:layout_height="wrap_content"
                 android:text="아이유 (IU)"
                 android:textColor="@color/white"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:id="@+id/streaming_artist"/>
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_next_arrow"
                 android:tint="@color/gray_600"
-                android:layout_marginStart="5sp"/>
+                android:layout_marginStart="5sp" />
         </LinearLayout>
         <androidx.cardview.widget.CardView
             android:layout_width="280dp"
@@ -70,8 +70,8 @@
                 android:src="@drawable/frag_chart_list_item_img_sample"
                 android:id="@+id/streaming_albumcover"/>
         </androidx.cardview.widget.CardView>
-        <ScrollView
-            android:layout_width="300dp"
+    <!--    <ScrollView
+            android:layout_width="280dp"
             android:layout_height="80sp"
             android:textColor="@color/gray_100"
             android:textAlignment="center"
@@ -84,29 +84,46 @@
                 android:textColor="@color/gray_200"
                 android:textAlignment="center"
                 android:id="@+id/streaming_lyric"/>
-        </ScrollView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/streaming_seekbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="10dp">
-        <ImageButton
+        </ScrollView> -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80sp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/lyrics_now"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:textColor="@color/white"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/lyrics_next"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:textColor="@color/gray_400"
+                android:textAlignment="center"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_like"
-            android:background="@android:color/transparent"
-            android:tint="@color/gray_400"
-            android:layout_marginEnd="40dp"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_traffic_signal"
-            android:background="@android:color/transparent"
-            android:tint="@color/gray_400"/>
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/streaming_seekbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="10dp">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_like"
+                android:background="@android:color/transparent"
+                android:tint="@color/gray_400"
+                android:layout_marginEnd="40dp"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_traffic_signal"
+                android:background="@android:color/transparent"
+                android:tint="@color/gray_400"/>
+        </LinearLayout>
     </LinearLayout>
     <SeekBar
         android:id="@+id/streaming_seekbar"
