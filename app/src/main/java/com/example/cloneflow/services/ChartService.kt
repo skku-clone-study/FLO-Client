@@ -30,7 +30,7 @@ data class Result(
 
 data class Chart(
     @SerializedName("updated") var updated : String? = null,
-    @SerializedName("playlistIdx") var playlistIdx : Int? = null,
+    @SerializedName("listIdx") var playlistIdx : Int? = null,
     @SerializedName("songs") var songs : List<Songs>? = null
 )
 

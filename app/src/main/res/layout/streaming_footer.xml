@@ -33,5 +33,6 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_playlist"
-        android:tint="@color/gray_100" />
+        android:tint="@color/gray_100"
+        android:onClick="onPlaylistBtnClicked"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

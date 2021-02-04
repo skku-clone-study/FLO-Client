@@ -9,6 +9,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageButton
 import android.widget.SeekBar
 import android.widget.TextView
@@ -187,7 +188,7 @@ class StreamingActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun startStreaming(src : String){
         Log.d("로그", "StreamingActivity - startStreaming() called")
-        //val URI = Uri.parse("https://r2---sn-3u-bh2e.googlevideo.com/videoplayback?expire=1612366063&ei=j2waYP75JbiFlQTrlJW4Bg&ip=203.229.147.89&id=o-AKdRJUF0WqnRXi1k08yTblD0lUH5CZZ6wL84eSZ6NBwE&itag=140&source=youtube&requiressl=yes&hcs=yes&mh=v-&mm=31%2C29&mn=sn-3u-bh2e%2Csn-3u-bh2e&ms=au%2Crdu&mv=m&mvi=2&pcm2cms=yes&pl=19&rmhost=r7---sn-3u-bh2e.googlevideo.com&shardbypass=yes&smhost=r7---sn-3u-bh2ll.googlevideo.com&initcwndbps=863750&vprv=1&mime=audio%2Fmp4&ns=2daCWx3AD1bJFYMdarg0byAF&gir=yes&clen=3207289&dur=198.135&lmt=1611952280808383&mt=1612344286&fvip=7&keepalive=yes&c=WEB&txp=5531432&n=Jy6Iv7w9mas2ElTwL&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&lsparams=hcs%2Cmh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl%2Crmhost%2Cshardbypass%2Csmhost%2Cinitcwndbps&lsig=AG3C_xAwRQIgVXm-hHv4EW6C7aNfW8ueNmx83X4PmTf7U5GSEmZRNTgCIQCD_asWXqvkcW6QrC3qBg1mr_m_loGthjkcT3Gn9yB-kQ%3D%3D&sig=AOq0QJ8wRQIgJmW3r4O9WfwiZZEfsbfvD2gYbl6icLoUUn4vTL6K9AMCIQDWIPI7PKIsieT7DRPbqDJ2DJ82QunUuz369y5g7Qe5Gw==&ratebypass=yes")
+        //val URI = Uri.parse("https://r7---sn-3u-bh2ll.googlevideo.com/videoplayback?expire=1612389003&ei=KsYaYKLlO_KEs8IPyviK4AQ&ip=203.229.147.89&id=o-AP-tZk5MmPPvEX-y6Jrn6vdCs4tFRNYVtKbTjw8L9_RF&itag=140&source=youtube&requiressl=yes&hcs=yes&mh=v-&mm=31%2C26&mn=sn-3u-bh2ll%2Csn-i3belnlz&ms=au%2Conr&mv=m&mvi=7&pcm2cms=yes&pl=19&shardbypass=yes&initcwndbps=1177500&vprv=1&mime=audio%2Fmp4&ns=4qmMTtMjAvLileYQ9B2BCqQF&gir=yes&clen=3207289&dur=198.135&lmt=1611952280808383&mt=1612367100&fvip=3&keepalive=yes&c=WEB&txp=5531432&n=jXIVAMSq1TKDr26aX&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&lsparams=hcs%2Cmh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl%2Cshardbypass%2Cinitcwndbps&lsig=AG3C_xAwRAIgPuWGTMynTk8zq5MuCRH16X3069OrptPV_YfrGdtiu14CIEeYoRDzHp9qtOZgnMrz_dvcwVSUWHekOZ82eVPNit8D&sig=AOq0QJ8wRgIhAPbBj1Qv9KEA4HxlDSGmCTu1v9aSdqu8SDFtzfc4D_8FAiEA8RPOzskjwx-huLOGj-AI14plsLEsI8LOxPrxV_hfDAc=&ratebypass=yes")
         val URI = Uri.parse(src)
         val audioAttributes = AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_MOVIE).build()
         mediaPlayer.setAudioAttributes(audioAttributes)
@@ -241,5 +242,10 @@ class StreamingActivity : AppCompatActivity() {
             }
         }
         return lyricsMap
+    }
+
+    fun onPlaylistBtnClicked(v : View){
+        val startPlayListIntent = Intent(this, PlaylistActivity::class.java)
+        startActivity(startPlayListIntent)
     }
 }

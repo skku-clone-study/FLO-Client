@@ -6,7 +6,8 @@
     <color name="gray_400">#D1D1D1</color>
     <color name="gray_600">#959595</color>
     <color name="gray_800">#5A5A5A</color>
-    <color name="gray_900">#272727</color>
+    <color name="gray_900">#3E3E3E</color>
+    <color name="gray_1000">#2C2C2C</color>
     <color name="black">#000000</color>
     <color name="flo_blue">#4D2BFF</color>
 </resources>

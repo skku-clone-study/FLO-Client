@@ -95,13 +95,13 @@ class ChartFragment : Fragment() {
     }
 
     private fun makeMusicChart(charts : List<Chart>) {
-        val recyclerView = view!!.findViewById<RecyclerView>(R.id.chart_recyclerview)
+        val recyclerView = requireView().findViewById<RecyclerView>(R.id.chart_recyclerview)
         recyclerView.adapter = ChartListRecyclerAdapter(charts)
         recyclerView.layoutManager = LinearLayoutManager(this.requireContext())
     }
 
     private fun makeVideoChart(videos : List<Videos>) {
-        val videoReclerView = view!!.findViewById<RecyclerView>(R.id.video_recyclerview)
+        val videoReclerView = requireView().findViewById<RecyclerView>(R.id.video_recyclerview)
         videoReclerView.adapter = VideoRecyclerAdapter(videos)
         videoReclerView.layoutManager = GridLayoutManager(this.requireContext(), 1, GridLayoutManager.HORIZONTAL, false)
         val snapHelper = PagerSnapHelper()

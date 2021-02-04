@@ -2,6 +2,7 @@ package com.example.cloneflow.mainfragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ class HomeFragment : Fragment() {
         if(jwt == "") {
             text3.text = "로그인 되지 않음"
         } else {
+            Log.d("로그", jwt)
             text3.text = "로그인 된 상태"
         }
         return view
