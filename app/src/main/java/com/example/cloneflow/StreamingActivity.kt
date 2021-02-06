@@ -66,10 +66,12 @@ class StreamingActivity : AppCompatActivity() {
         override fun run() {
             while(isPlaying) {
                 seekbar.progress = mediaPlayer.currentPosition
-                val curLyrics = searchLyrics(mediaPlayer.currentPosition)
-                if(curLyrics != -1){
-                    currentLyricsTextView.text = lyricsMap[lyricsMap.keys.toList()[curLyrics]]
-                    if(curLyrics != lastLyricPos!!-2) {nextLyricsTextView.text = lyricsMap[lyricsMap.keys.toList()[curLyrics+1]]}
+                if(mediaPlayer.currentPosition%500==0){
+                    val curLyrics = searchLyrics(mediaPlayer.currentPosition)
+                    if(curLyrics != -1){
+                        currentLyricsTextView.text = lyricsMap[lyricsMap.keys.toList()[curLyrics]]
+                        if(curLyrics != lastLyricPos!!-3) {nextLyricsTextView.text = lyricsMap[lyricsMap.keys.toList()[curLyrics+1]]}
+                    }
                 }
             }
         }

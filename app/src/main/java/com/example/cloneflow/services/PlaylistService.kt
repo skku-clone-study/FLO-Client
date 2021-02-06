@@ -32,5 +32,6 @@ data  class PLSongs(
     @SerializedName("musicIdx") var musicIdx : Int? = null,
     @SerializedName("cover") var cover : String? = null,
     @SerializedName("title") var title : String? = null,
-    @SerializedName("artist") var artist : String? = null
+    @SerializedName("artist") var artist : String? = null,
+    @SerializedName("albumIdx") var albumIdx : Int? = null
 )

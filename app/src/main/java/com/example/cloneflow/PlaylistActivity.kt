@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ExpandableListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -48,7 +49,22 @@ class PlaylistActivity : AppCompatActivity() {
                     when{
                         responseBody.isSuccess!! -> {
                             val playListRecyclerView = findViewById<RecyclerView>(R.id.playlist_recyclerview)
-                            playListRecyclerView.adapter = PlaylistRecyclerAdapter(responseBody.result!!)
+                            val playListData = ArrayList<PlaylistRecyclerAdapter.Item>()
+                            Log.d("로그", "PlaylistActivity - onResponse() called ${responseBody.result!!}")
+                            for(it in responseBody.result!!){
+                                when (it.isGroup){
+                                    0 -> {
+                                        playListData.add(PlaylistRecyclerAdapter.Item(0, it.songs?.get(0)?.title, it.songs?.get(0)?.musicIdx, it.songs?.get(0)?.albumIdx, it.songs?.get(0)?.cover, it.songs?.get(0)?.artist))
+                                    }
+                                    1 -> {
+                                        playListData.add(PlaylistRecyclerAdapter.Item(1, it.groupName, null, null, null, null))
+                                        for(iit in it.songs!!){
+                                            playListData.add(PlaylistRecyclerAdapter.Item(2, iit.title, iit.musicIdx, iit.albumIdx, iit.cover, iit.artist))
+                                        }
+                                    }
+                                }
+                            }
+                            playListRecyclerView.adapter = PlaylistRecyclerAdapter(playListData)
                             playListRecyclerView.layoutManager = LinearLayoutManager(this@PlaylistActivity)
                         }
                         else -> {
@@ -75,3 +91,4 @@ class PlaylistActivity : AppCompatActivity() {
         return pref?.getString("jwt", null)
     }
 }
+
