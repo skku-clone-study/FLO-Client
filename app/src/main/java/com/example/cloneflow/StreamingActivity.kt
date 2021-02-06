@@ -16,6 +16,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.example.cloneflow.infoactivities.InfoArtistActivity
 import com.example.cloneflow.services.StreamingResponse
 import com.example.cloneflow.services.StreamingService
 import com.example.cloneflow.useractivities.LoginActivity
@@ -107,6 +108,12 @@ class StreamingActivity : AppCompatActivity() {
                             responseBody.isSuccess!! -> {
                                 val result = responseBody.result!!
                                 findViewById<TextView>(R.id.streaming_title).text = result.title.toString()
+                                findViewById<TextView>(R.id.streaming_artist).setOnClickListener{
+                                    val artistInfoIntent = Intent(this@StreamingActivity, InfoArtistActivity::class.java)
+                                    Log.d("로그", "StreamingActivity - lets see ${result.artistIdx}th artist activity")
+                                    artistInfoIntent.putExtra("artistIdx", result.artistIdx!!.toInt())
+                                    startActivity(artistInfoIntent)
+                                }
                                 findViewById<TextView>(R.id.streaming_artist).text = result.artist.toString()
                                 //findViewById<TextView>(R.id.streaming_lyric).text = result.lyrics.toString()
                                 Glide.with(this@StreamingActivity).load(result.cover.toString())

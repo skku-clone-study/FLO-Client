@@ -1,4 +1,4 @@
-package com.example.cloneflow.albumfragments
+package com.example.cloneflow.artistfragments
 
 import android.content.Context
 import android.content.Intent
@@ -41,8 +41,8 @@ class VideoFragment(val idx : Int) : Fragment() {
         } else {
             val retrofit : Retrofit? = Retrofit.Builder().baseUrl(BaseUrl).addConverterFactory(
                 GsonConverterFactory.create()).build()
-            val service = retrofit!!.create(InfoService.AlbumService::class.java)
-            val call = service.getAlbumVideoInfo(token = token, idx = idx, sort = 0)
+            val service = retrofit!!.create(InfoService.ArtistService::class.java)
+            val call = service.getArtistVideoInfo(token = token, idx = idx, sort = 0)
             call.enqueue(object : Callback<VideoInfoResponse>{
                 override fun onFailure(call: Call<VideoInfoResponse>, t: Throwable) {
                     Log.d("로그", "VideoFragment - onFailure() called")

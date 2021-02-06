@@ -39,7 +39,7 @@ class DetailFragment(val idx : Int) : Fragment() {
         } else {
             val retrofit : Retrofit? = Retrofit.Builder().baseUrl(BaseUrl).addConverterFactory(
                 GsonConverterFactory.create()).build()
-            val service = retrofit!!.create(InfoService.AlbumInfoInfoService::class.java)
+            val service = retrofit!!.create(InfoService.AlbumService::class.java)
             val call = service.getAlbumInfoInfo(token = token, idx = idx)
             call.enqueue(object : Callback<AlbumInfoInfoResponse>{
                 override fun onFailure(call: Call<AlbumInfoInfoResponse>, t: Throwable) {

@@ -62,7 +62,7 @@ class InfoAlbumActivity : AppCompatActivity() {
                 val retrofit: Retrofit? = Retrofit.Builder().baseUrl(BaseUrl).addConverterFactory(
                     GsonConverterFactory.create()
                 ).build()
-                val service = retrofit!!.create(InfoService.AlbumInfoService::class.java)
+                val service = retrofit!!.create(InfoService.AlbumService::class.java)
                 val call = service.getAlbumInfo(token = token, idx = albumIndex)
                 call.enqueue(object : Callback<AlbumInfoResponse> {
                     override fun onFailure(call: Call<AlbumInfoResponse>, t: Throwable) {
@@ -99,7 +99,6 @@ class InfoAlbumActivity : AppCompatActivity() {
                                 Glide.with(this@InfoAlbumActivity).load(albumCoverSrc)
                                     .into(findViewById(R.id.album_thumbnail_img))
 
-                                Log.d("로그", "SearchFragment - album cover src => $albumCoverSrc")
                                 val fragmentManager =
                                     (this@InfoAlbumActivity as FragmentActivity).supportFragmentManager
                                 val adapter = ViewPagerAdapter(fragmentManager)
