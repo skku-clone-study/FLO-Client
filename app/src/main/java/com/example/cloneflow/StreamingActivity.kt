@@ -42,9 +42,11 @@ class StreamingActivity : AppCompatActivity() {
         lateinit var handleBtn : ImageButton
         lateinit var currentLyricsTextView : TextView
         lateinit var nextLyricsTextView: TextView
+        lateinit var currentMinSec : TextView
+        lateinit var fullMinSec : TextView
     }
 
-    private class StreamingThread : Thread() {
+    inner class StreamingThread : Thread() {
         fun milisecToString(miliseconds : Int) : String {
             val minutes : Int = (miliseconds / 1000 / 60)
             val seconds : Int = (miliseconds / 1000 % 60)
@@ -67,11 +69,14 @@ class StreamingActivity : AppCompatActivity() {
         override fun run() {
             while(isPlaying) {
                 seekbar.progress = mediaPlayer.currentPosition
-                if(mediaPlayer.currentPosition%500==0){
-                    val curLyrics = searchLyrics(mediaPlayer.currentPosition)
-                    if(curLyrics != -1){
-                        currentLyricsTextView.text = lyricsMap[lyricsMap.keys.toList()[curLyrics]]
-                        if(curLyrics != lastLyricPos!!-3) {nextLyricsTextView.text = lyricsMap[lyricsMap.keys.toList()[curLyrics+1]]}
+                runOnUiThread{
+                    if(mediaPlayer.currentPosition%500==0){
+                        val curLyrics = searchLyrics(mediaPlayer.currentPosition)
+                        if(curLyrics != -1){
+                            currentLyricsTextView.text = lyricsMap[lyricsMap.keys.toList()[curLyrics]]
+                            if(curLyrics != lastLyricPos!!-3) {nextLyricsTextView.text = lyricsMap[lyricsMap.keys.toList()[curLyrics+1]]}
+                        }
+                        currentMinSec.text = milisecToString(mediaPlayer.currentPosition)
                     }
                 }
             }
@@ -127,6 +132,8 @@ class StreamingActivity : AppCompatActivity() {
                                 mediaPlayer = MediaPlayer()
                                 seekbar = findViewById(R.id.streaming_seekbar)
                                 handleBtn = findViewById(R.id.streaming_handle_btn)
+                                fullMinSec = findViewById(R.id.streaming_fulltime)
+                                currentMinSec = findViewById(R.id.streaming_runningtime)
                                 seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                                     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                                         if (seekBar!!.max == progress) {
@@ -211,6 +218,7 @@ class StreamingActivity : AppCompatActivity() {
         mediaPlayer.setOnPreparedListener {
             seekbar.max = mediaPlayer.duration
             mediaPlayer.start()
+            fullMinSec.text = milisecToString(seekbar.max)
         }
         val a = mediaPlayer.duration
         seekbar.max = a
@@ -256,5 +264,13 @@ class StreamingActivity : AppCompatActivity() {
     fun onPlaylistBtnClicked(v : View){
         val startPlayListIntent = Intent(this, PlaylistActivity::class.java)
         startActivity(startPlayListIntent)
+    }
+
+    fun milisecToString(miliseconds : Int) : String {
+        val minutes : Int = (miliseconds / 1000 / 60)
+        val seconds : Int = (miliseconds / 1000 % 60)
+        val minutesString = String.format("%02d", minutes)
+        val secondsString = String.format("%02d", seconds)
+        return "$minutesString:$secondsString"
     }
 }

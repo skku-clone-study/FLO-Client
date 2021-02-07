@@ -31,7 +31,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Celebrity"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -47,7 +46,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="아이유 (IU)"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:id="@+id/streaming_artist"/>
@@ -70,35 +68,20 @@
                 android:src="@drawable/frag_chart_list_item_img_sample"
                 android:id="@+id/streaming_albumcover"/>
         </androidx.cardview.widget.CardView>
-    <!--    <ScrollView
-            android:layout_width="280dp"
-            android:layout_height="80sp"
-            android:textColor="@color/gray_100"
-            android:textAlignment="center"
-            android:layout_marginBottom="20dp"
-            android:textSize="15sp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="세상의 모서리\n구부정하게 커버린\n골칫거리 outsider\n\n걸음걸이, 옷차림,\n이어폰 너머 play list\n음악까지 다 minor\n넌 모르지\n떨군 고개 위\n환한 빛 조명이\n어딜 비추는지\n\n느려도 좋으니\n결국 알게 되길\nThe one and only\nYou are my celebrity\n\n잊지마 넌 흐린 어둠 사이\n왼손으로 그린 별 하나\n보이니 그 유일함이 얼마나\n아름다운지 말야\nYou are my celebrity"
-                android:textColor="@color/gray_200"
-                android:textAlignment="center"
-                android:id="@+id/streaming_lyric"/>
-        </ScrollView> -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80sp"
+            android:layout_height="60sp"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/lyrics_now"
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
+                android:layout_height="30sp"
                 android:textColor="@color/white"
                 android:textAlignment="center"/>
             <TextView
                 android:id="@+id/lyrics_next"
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
+                android:layout_height="30sp"
                 android:textColor="@color/gray_400"
                 android:textAlignment="center"/>
         </LinearLayout>
@@ -129,9 +112,31 @@
         android:id="@+id/streaming_seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/musicBar"
+        app:layout_constraintBottom_toTopOf="@id/musicTimeBar"
         android:progressDrawable="@drawable/seekbar"
         android:thumb="@android:color/transparent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:id="@+id/musicTimeBar"
+        app:layout_constraintBottom_toTopOf="@id/musicBar"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+        <TextView
+            android:id="@+id/streaming_runningtime"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="00:00"
+            android:textColor="@color/gray_600"/>
+        <TextView
+            android:id="@+id/streaming_fulltime"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="00:00"
+            android:textColor="@color/gray_600"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
         android:id="@+id/musicBar"
         android:layout_width="match_parent"

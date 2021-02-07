@@ -95,6 +95,12 @@ class InfoAlbumActivity : AppCompatActivity() {
 
                                 findViewById<TextView>(R.id.album_title).text = albumName
                                 findViewById<TextView>(R.id.album_artist).text = albumArtist
+                                findViewById<TextView>(R.id.album_artist).setOnClickListener{
+                                    val artistIdx = responseResult.artistIdx!!.toInt()
+                                    val artistInfoIntent = Intent(this@InfoAlbumActivity, InfoArtistActivity::class.java)
+                                    artistInfoIntent.putExtra("artistIdx", artistIdx)
+                                    startActivity(artistInfoIntent)
+                                }
                                 findViewById<TextView>(R.id.album_short_desc).text = descStr
                                 Glide.with(this@InfoAlbumActivity).load(albumCoverSrc)
                                     .into(findViewById(R.id.album_thumbnail_img))
