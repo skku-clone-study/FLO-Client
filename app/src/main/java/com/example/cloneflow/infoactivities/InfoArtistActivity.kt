@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -28,10 +30,13 @@ import com.example.cloneflow.mainfragments.SearchFragment
 import com.example.cloneflow.mainfragments.StorageFragment
 import com.example.cloneflow.services.ArtistInfoResult
 import com.example.cloneflow.services.InfoService
+import com.example.cloneflow.services.LikeService
+import com.example.cloneflow.services.LikedResponse
 import com.example.cloneflow.useractivities.LoginActivity
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,6 +48,7 @@ class InfoArtistActivity : AppCompatActivity() {
     companion object {
         var BaseUrl = "https://www.heedong.dev/"
         val PREFERENCE = "com.example.cloneflow"
+        var idx : Int? = null
         private val homeFragment = HomeFragment()
         private val chartFragment = ChartFragment()
         private val searchFragment = SearchFragment()
@@ -87,7 +93,11 @@ class InfoArtistActivity : AppCompatActivity() {
                             findViewById<TextView>(R.id.info_artist_name).text = responseResult.artistName
                             findViewById<TextView>(R.id.info_artist_type).text = responseResult.artistType
                             findViewById<TextView>(R.id.info_artist_genre).text = responseResult.artistGenre
-
+                            idx = responseResult.artistIdx
+                            if(responseResult.isLiked == "TRUE") {
+                                findViewById<ImageView>(R.id.like_btn).setImageDrawable(
+                                    ContextCompat.getDrawable(this@InfoArtistActivity, R.drawable.ic_like_filled))
+                            }
                             val fragmentManager =
                                 (this@InfoArtistActivity as FragmentActivity).supportFragmentManager
                             val adapter = ViewPagerAdapter(fragmentManager)
@@ -176,5 +186,49 @@ class InfoArtistActivity : AppCompatActivity() {
             R.anim.none,
             R.anim.fade_out
         )
+    }
+
+    fun onHeartBtnClicked(v : View) {
+        val token = getToken()
+        val heartBtn = findViewById<ImageButton>(R.id.like_btn)
+        if(token != null) {
+            val retrofit: Retrofit? = Retrofit.Builder().baseUrl(BaseUrl).addConverterFactory(
+                GsonConverterFactory.create()
+            ).build()
+            val service = retrofit!!.create(LikeService.LikeOrUnlike::class.java)
+            val sendJsonObject = JsonObject()
+            sendJsonObject.addProperty("idx", idx)
+            val call = service.postLiked(token= token, params=sendJsonObject, obj=3)
+            call.enqueue(object : Callback<LikedResponse>{
+                override fun onFailure(call: Call<LikedResponse>, t: Throwable) {
+                    Log.d("로그", "InfoArtistActivity - onFailure() called - $t")
+                }
+                override fun onResponse(
+                    call: Call<LikedResponse>,
+                    response: Response<LikedResponse>
+                ) {
+                    Log.d("로그", "InfoArtistActivity - onResponse() called")
+                    when{
+                        response.isSuccessful -> {
+                            Log.d("로그", "[${response.body()!!.code}] ${response.body()!!.result!!.type} ${response.body()!!.message}")
+                            when(response.body()!!.code){
+                                200 -> {
+                                    heartBtn.setImageDrawable(
+                                        ContextCompat.getDrawable(this@InfoArtistActivity, R.drawable.ic_like_filled))
+                                }
+                                201 -> {
+                                    heartBtn.setImageDrawable(
+                                        ContextCompat.getDrawable(this@InfoArtistActivity, R.drawable.ic_like))
+                                }
+                            }
+                        }
+                        else -> {
+                            Log.d("로그", "However, response was not successful")
+
+                        }
+                    }
+                }
+            })
+        }
     }
 }

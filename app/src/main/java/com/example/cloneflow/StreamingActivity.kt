@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -123,6 +124,10 @@ class StreamingActivity : AppCompatActivity() {
                                 //findViewById<TextView>(R.id.streaming_lyric).text = result.lyrics.toString()
                                 Glide.with(this@StreamingActivity).load(result.cover.toString())
                                     .into(findViewById(R.id.streaming_albumcover))
+                                if(result.isLiked == "TRUE") {
+                                    findViewById<ImageView>(R.id.like_btn).setImageDrawable(
+                                        ContextCompat.getDrawable(this@StreamingActivity, R.drawable.ic_like_filled))
+                                }
                                 lyrics = result.lyrics.toString()
                                 lyricsMap = parseByRN(lyrics!!)
                                 Log.d("로그", "lyricsmap $lyricsMap")

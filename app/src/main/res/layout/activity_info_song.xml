@@ -12,10 +12,6 @@
         app:layout_constraintBottom_toTopOf="@id/base_bot_nav_id"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include
-            android:id="@+id/info_header"
-            layout="@layout/info_header" />
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -43,6 +39,7 @@
                         android:onClick="onBackBtnPressed"
                         />
                     <ImageButton
+                        android:id="@+id/like_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toStartOf="@+id/ibb"
@@ -51,6 +48,7 @@
                         android:tint="@color/gray_900"
                         android:background="@android:color/transparent"
                         android:layout_marginEnd="20sp"
+                        android:onClick="onHeartBtnClicked"
                         />
                     <ImageButton
                         android:id="@+id/ibb"

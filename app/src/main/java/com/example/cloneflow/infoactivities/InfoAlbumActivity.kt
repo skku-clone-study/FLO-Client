@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -24,10 +27,13 @@ import com.example.cloneflow.albumfragments.VideoFragment
 import com.example.cloneflow.mainfragments.*
 import com.example.cloneflow.services.AlbumInfoResponse
 import com.example.cloneflow.services.InfoService
+import com.example.cloneflow.services.LikeService
+import com.example.cloneflow.services.LikedResponse
 import com.example.cloneflow.useractivities.LoginActivity
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,6 +45,7 @@ class InfoAlbumActivity : AppCompatActivity() {
     companion object {
         var BaseUrl = "https://www.heedong.dev/"
         val PREFERENCE = "com.example.cloneflow"
+        var idx : Int? = null
         private val homeFragment = HomeFragment()
         private val chartFragment = ChartFragment()
         private val searchFragment = SearchFragment()
@@ -92,6 +99,7 @@ class InfoAlbumActivity : AppCompatActivity() {
                                 val albumCoverSrc = responseResult.cover.toString()
                                 val albumIdx = responseResult.albumIdx!!.toInt()
                                 val descStr = "$albumReleasedDate | $albumType | $albumGenre"
+                                idx = albumIdx
 
                                 findViewById<TextView>(R.id.album_title).text = albumName
                                 findViewById<TextView>(R.id.album_artist).text = albumArtist
@@ -104,6 +112,10 @@ class InfoAlbumActivity : AppCompatActivity() {
                                 findViewById<TextView>(R.id.album_short_desc).text = descStr
                                 Glide.with(this@InfoAlbumActivity).load(albumCoverSrc)
                                     .into(findViewById(R.id.album_thumbnail_img))
+                                if(responseResult.isLiked == "TRUE") {
+                                    findViewById<ImageView>(R.id.like_btn).setImageDrawable(
+                                        ContextCompat.getDrawable(this@InfoAlbumActivity, R.drawable.ic_like_filled))
+                                }
 
                                 val fragmentManager =
                                     (this@InfoAlbumActivity as FragmentActivity).supportFragmentManager
@@ -194,5 +206,49 @@ class InfoAlbumActivity : AppCompatActivity() {
             R.anim.none,
             R.anim.fade_out
         )
+    }
+
+    fun onHeartBtnClicked(v : View) {
+        val token = getToken()
+        val heartBtn = findViewById<ImageButton>(R.id.like_btn)
+        if(token != null) {
+            val retrofit: Retrofit? = Retrofit.Builder().baseUrl(BaseUrl).addConverterFactory(
+                GsonConverterFactory.create()
+            ).build()
+            val service = retrofit!!.create(LikeService.LikeOrUnlike::class.java)
+            val sendJsonObject = JsonObject()
+            sendJsonObject.addProperty("idx", idx)
+            val call = service.postLiked(token= token, params=sendJsonObject, obj=1)
+            call.enqueue(object : Callback<LikedResponse>{
+                override fun onFailure(call: Call<LikedResponse>, t: Throwable) {
+                    Log.d("로그", "InfoAlbumActivity - onFailure() called - $t")
+                }
+                override fun onResponse(
+                    call: Call<LikedResponse>,
+                    response: Response<LikedResponse>
+                ) {
+                    Log.d("로그", "InfoAlbumActivity - onResponse() called")
+                    Log.d("로그", "[${response.body()!!.code}] ${response.body()!!.result!!.type} ${response.body()!!.message}")
+                    when{
+                        response.isSuccessful -> {
+
+                            when(response.body()!!.code){
+                                200 -> {
+                                    heartBtn.setImageDrawable(
+                                        ContextCompat.getDrawable(this@InfoAlbumActivity, R.drawable.ic_like_filled))
+                                }
+                                201 -> {
+                                    heartBtn.setImageDrawable(
+                                        ContextCompat.getDrawable(this@InfoAlbumActivity, R.drawable.ic_like))
+                                }
+                            }
+                        }
+                        else -> {
+                            Log.d("로그", "However, response was not successful")
+                        }
+                    }
+                }
+            })
+        }
     }
 }
