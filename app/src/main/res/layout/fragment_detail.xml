@@ -18,7 +18,8 @@
                 android:layout_height="wrap_content"
                 android:text="앨범명"
                 android:textStyle="bold"
-                android:width="70dp"/>
+                android:width="70dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:text="아티스트"
                 android:textStyle="bold"
-                android:width="70dp"/>
+                android:width="70dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,7 +52,8 @@
                 android:layout_height="wrap_content"
                 android:text="발매사"
                 android:textStyle="bold"
-                android:width="70dp"/>
+                android:width="70dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,7 +69,8 @@
                 android:layout_height="wrap_content"
                 android:text="기획사"
                 android:textStyle="bold"
-                android:width="70dp"/>
+                android:width="70dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,7 +83,8 @@
             android:text="앨범소개"
             android:textStyle="bold"
             android:layout_marginTop="20sp"
-            android:width="70dp"/>
+            android:width="70dp"
+            android:textColor="@color/black"/>
         <TextView
             android:id="@+id/info_album_detail_textview"
             android:layout_width="match_parent"

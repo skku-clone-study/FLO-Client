@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cloneflow.R
 import com.example.cloneflow.StreamingActivity
+import com.example.cloneflow.infoactivities.InfoSongActivity
 import com.example.cloneflow.services.AlbumTrackResult
 
 class InfoTrackRecyclerAdapter(val items : List<AlbumTrackResult>) : RecyclerView.Adapter<InfoTrackRecyclerAdapter.ViewHolder>() {
@@ -43,12 +44,18 @@ class InfoTrackRecyclerAdapter(val items : List<AlbumTrackResult>) : RecyclerVie
             if(item.isTitleOfAlbum == "FALSE") {isTitle.visibility = View.GONE}
             trackTitle.text = item.title
             trackArtist.text = item.artist
+            val musicIdx = item.musicIdx
             val musicPlayBtn = view.findViewById<ImageButton>(R.id.album_song_play_btn)
             musicPlayBtn.setOnClickListener{
-                val musicIdx = item.musicIdx
                 val musicPlayIntent = Intent(view.context, StreamingActivity::class.java)
                 musicPlayIntent.putExtra("musicIdx", musicIdx)
                 view.context.startActivity(musicPlayIntent)
+            }
+            val musicDetailBtn = view.findViewById<ImageButton>(R.id.album_song_info_btn)
+            musicDetailBtn.setOnClickListener{
+                val musicDetailIntent = Intent(view.context, InfoSongActivity::class.java)
+                musicDetailIntent.putExtra("musicIdx", musicIdx)
+                view.context.startActivity(musicDetailIntent)
             }
             Log.d("로그", "ViewHolder - bind(${item.title}) called")
         }

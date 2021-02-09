@@ -65,6 +65,25 @@ class InfoService {
             @Query("sort") sort: Int?
         ) : Call<VideoInfoResponse>
     }
+
+    interface SongService{
+        @GET("api/music/{idx}")
+        fun getSongInfo(
+            @Header("X-ACCESS-TOKEN") token: String,
+            @Path("idx") idx: Int
+        ) : Call<SongInfoResult>
+        @GET("api/music/{idx}/info")
+        fun getSongDetailInfo(
+            @Header("X-ACCESS-TOKEN") token: String,
+            @Path("idx") idx: Int
+        ) : Call<SongDetailResult>
+        @GET("api/music/{idx}/video")
+        fun getSongVideoInfo(
+            @Header("X-ACCESS-TOKEN") token: String,
+            @Path("idx") idx: Int,
+            @Query("sort") sort : Int
+        ) : Call<VideoInfoResponse>
+    }
 }
 
 data class AlbumInfoResponse(
@@ -188,4 +207,26 @@ data class ArtistAlbum(
     @SerializedName("type") var type : String? = null,
     @SerializedName("sort") var sort : String? = null,
     @SerializedName("albums") var albums : List<AlbumResult>? = null
+)
+
+data class SongInfoResult(
+    @SerializedName("isSuccess") var isSuccess : Boolean? = null,
+    @SerializedName("code") var code : Int? = null,
+    @SerializedName("message") var message : String? = null,
+    @SerializedName("result") var result : MusicResult? = null
+)
+
+data class SongDetailResult(
+    @SerializedName("isSuccess") var isSuccess : Boolean? = null,
+    @SerializedName("code") var code : Int? = null,
+    @SerializedName("message") var message : String? = null,
+    @SerializedName("result") var result : SongDetail? = null
+)
+
+data class SongDetail(
+    @SerializedName("title") var title : String? = null,
+    @SerializedName("lyricist") var lyricist : String? = null,
+    @SerializedName("composer") var composer : String? = null,
+    @SerializedName("arrangement") var arrangement : String? = null,
+    @SerializedName("lyrics") var lyrics : String? = null
 )
