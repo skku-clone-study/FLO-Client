@@ -65,7 +65,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/frag_chart_list_item_img_sample"
+                android:src="@drawable/logo_flo"
                 android:id="@+id/streaming_albumcover"/>
         </androidx.cardview.widget.CardView>
         <LinearLayout
