@@ -118,6 +118,7 @@ class InfoArtistActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        Log.d("로그", "InfoArtistActivity - onBackPressed() called")
         if(isFinishing){
             overridePendingTransition(
                 R.anim.none,
@@ -169,6 +170,7 @@ class InfoArtistActivity : AppCompatActivity() {
     }
 
     fun onBackBtnPressed(v : View){
+        Log.d("로그", "InfoArtistActivity - onBackBtnPressed() called")
         finish()
         overridePendingTransition(
             R.anim.none,

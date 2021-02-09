@@ -115,6 +115,7 @@ class InfoSongActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        Log.d("로그", "InfoSongActivity - onBackPressed() called")
         if(isFinishing){
             overridePendingTransition(
                 R.anim.none,
@@ -166,6 +167,7 @@ class InfoSongActivity : AppCompatActivity() {
     }
 
     fun onBackBtnPressed(v : View){
+        Log.d("로그", "InfoSongActivity - onBackBtnPressed() called")
         finish()
         overridePendingTransition(
             R.anim.none,

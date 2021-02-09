@@ -136,6 +136,7 @@ class InfoAlbumActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        Log.d("로그", "InfoAlbumActivity - onBackPressed() called")
         if(isFinishing){
             overridePendingTransition(
                 R.anim.none,
@@ -187,6 +188,7 @@ class InfoAlbumActivity : AppCompatActivity() {
     }
 
     fun onBackBtnPressed(v : View){
+        Log.d("로그", "InfoAlbumActivity - onBackBtnPressed() called")
         finish()
         overridePendingTransition(
             R.anim.none,
