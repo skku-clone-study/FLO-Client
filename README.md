@@ -3,8 +3,8 @@
 - [X] 로컬 로그인
 - [ ] 카카오 로그인
 - [X] 음악 차트  
-- [ ] 음악/앨범 정보
-- [ ] 음악 스트리밍
+- [X] 음악/앨범 정보
+- [X] 음악 스트리밍
 - [ ] 유저 정보 관리
 
 
@@ -25,3 +25,7 @@
 | `implementation 'com.github.bumptech.glide:glide:4.9.0'` | [👍](https://github.com/bumptech/glide) | url로 이미지 받기 |
 | `annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'` | | |
 | `implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6"` | [👍]() | 리사이클러뷰에 dot indicator 추가 |
+
+### Result
+
+[![Video Label](https://img.youtube.com/vi/U3kJxYDnRuY/0.jpg)](https://youtu.be/U3kJxYDnRuY)
